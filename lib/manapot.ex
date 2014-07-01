@@ -1,0 +1,2 @@
+defmodule ManaPot do
+end
