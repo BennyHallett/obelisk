@@ -12,3 +12,18 @@ way that your site works.
 * **Templatable**. It should be possible to store templates in github repos and reference them
 directly, allowing modification of the look and feel of a site instantaneously with no manual
 installation.
+
+## Structure
+
+An obelisk project is set out with the following structure
+
+    /
+    /site.yml
+    /assets/
+    /assets/css/
+    /assets/js/
+    /assets/img/
+    /posts/
+    /drafts/
+    /pages/
+    /layout/
