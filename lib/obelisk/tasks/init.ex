@@ -10,13 +10,25 @@ defmodule Obelisk.Tasks.Init do
 
   def run(args) do
     create_assets_dirs
+    create_content_dirs
+    create_layout_dirs
   end
 
   defp create_assets_dirs do
-    File.mkdir("./assets")
-    File.mkdir("./assets/css")
-    File.mkdir("./assets/js")
-    File.mkdir("./assets/img")
+    File.mkdir "./assets"
+    File.mkdir "./assets/css"
+    File.mkdir "./assets/js"
+    File.mkdir "./assets/img"
+  end
+
+  defp create_content_dirs do
+    File.mkdir "./posts"
+    File.mkdir "./drafts"
+    File.mkdir "./pages"
+  end
+
+  defp create_layout_dirs do
+    File.mkdir "./layout"
   end
 
 end
