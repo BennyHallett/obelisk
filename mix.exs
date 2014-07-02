@@ -25,6 +25,6 @@ defmodule Obelisk.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    []
+    [{:markdown, github: "devinus/markdown"}]
   end
 end
