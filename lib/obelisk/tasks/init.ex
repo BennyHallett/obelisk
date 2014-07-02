@@ -9,7 +9,14 @@ defmodule Obelisk.Tasks.Init do
   """
 
   def run(args) do
-    IO.puts args
+    create_assets_dirs
+  end
+
+  defp create_assets_dirs do
+    File.mkdir("./assets")
+    File.mkdir("./assets/css")
+    File.mkdir("./assets/js")
+    File.mkdir("./assets/img")
   end
 
 end
