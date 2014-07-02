@@ -8,7 +8,7 @@ defmodule InitTaskTest do
       File.rmdir "./drafts"
       File.rmdir "./pages"
       File.rmdir "./layout"
-      File.rm "./config.yml"
+      File.rm "./site.yml"
     end
   end
 
@@ -38,6 +38,6 @@ defmodule InitTaskTest do
   test "Init task creates initial config file" do
     Obelisk.Tasks.Init.run([])
 
-    assert File.exists? "./config.yml"
+    assert File.exists? "./site.yml"
   end
 end

@@ -12,7 +12,7 @@ defmodule Obelisk.Tasks.Init do
     create_assets_dirs
     create_content_dirs
     create_layout_dirs
-    File.write './config.yml', config_content
+    File.write './site.yml', config_content
   end
 
   defp create_assets_dirs do
