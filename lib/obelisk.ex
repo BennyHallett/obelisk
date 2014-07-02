@@ -1,0 +1,2 @@
+defmodule Obelisk do
+end

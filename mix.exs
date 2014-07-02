@@ -1,8 +1,8 @@
-defmodule ManaPot.Mixfile do
+defmodule Obelisk.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :manapot,
+    [app: :obelisk,
      version: "0.0.1",
      elixir: "~> 0.14.1",
      deps: deps]

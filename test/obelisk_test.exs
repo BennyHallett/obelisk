@@ -1,4 +1,4 @@
-defmodule ManaPotTest do
+defmodule ObeliskTest do
   use ExUnit.Case
 
   test "the truth" do
