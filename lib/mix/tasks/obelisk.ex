@@ -23,6 +23,7 @@ defmodule Mix.Tasks.Obelisk do
         validate_cmd! cmd
        case cmd do
         "init" -> Obelisk.Tasks.Init.run(tail)
+        "build" -> Obelisk.Tasks.Build.run(tail)
       end
     end
   end

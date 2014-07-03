@@ -2,3 +2,10 @@
 /deps
 erl_crash.dump
 *.ez
+
+/posts
+/build
+/drafts
+/pages
+/assets
+site.yml
