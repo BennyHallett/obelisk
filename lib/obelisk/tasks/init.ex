@@ -12,9 +12,9 @@ defmodule Obelisk.Tasks.Init do
     create_assets_dirs
     create_content_dirs
     create_layout_dirs
-    File.write './site.yml', config_content
     date = String.rstrip(System.cmd("date +%Y-%m-%d"))
-    File.cp "./templates/post.markdown", "./posts/#{date}-welcome-to-obelisk.markdown"
+    File.write "./posts/#{date}-welcome-to-obelisk.markdown", Obelisk.Templates.post
+    File.write './site.yml', Obelisk.Templates.config
   end
 
   defp create_assets_dirs do
@@ -32,14 +32,6 @@ defmodule Obelisk.Tasks.Init do
 
   defp create_layout_dirs do
     File.mkdir "./layout"
-  end
-
-  defp config_content do
-    """
-    ---
-    name: A brand new static site
-
-    """
   end
 
 end
