@@ -1,0 +1,4 @@
+* Wrap generated html in a post.html template
+* Create an index file, based on index.html
+* Make it easy to create chaptered content
+* Use front matter to choose template to use
