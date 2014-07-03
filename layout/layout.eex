@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>This should be replaced by whats in site.yml</title>
+  </head>
+
+  <body>
+    <%= @content %>
+  </body>
+</html>

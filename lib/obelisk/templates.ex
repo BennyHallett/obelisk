@@ -40,4 +40,19 @@ defmodule Obelisk.Templates do
   """
   end
 
+  def layout do
+  """
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>This should be replaced by whats in site.yml</title>
+    </head>
+
+    <body>
+      <%= @content %>
+    </body>
+  </html>
+  """
+  end
+
 end
