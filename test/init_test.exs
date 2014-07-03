@@ -4,7 +4,7 @@ defmodule InitTaskTest do
   setup do
     on_exit fn ->
       File.rm_rf "./assets"
-      File.rmdir "./posts"
+      File.rm_rf "./posts"
       File.rmdir "./drafts"
       File.rmdir "./pages"
       File.rmdir "./layout"
@@ -39,5 +39,12 @@ defmodule InitTaskTest do
     Obelisk.Tasks.Init.run([])
 
     assert File.exists? "./site.yml"
+  end
+
+  test "Init task creates first post" do
+    Obelisk.Tasks.Init.run([])
+
+    date = String.rstrip(System.cmd("date +%Y-%m-%d"))
+    assert File.exists? "./posts/#{date}-welcome-to-obelisk.markdown"
   end
 end
