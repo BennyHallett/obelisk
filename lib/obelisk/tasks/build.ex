@@ -14,7 +14,8 @@ defmodule Obelisk.Tasks.Build do
     File.mkdir "./build"
     contents = Enum.map(files, fn a ->
       { :ok, md } = File.read("./posts/#{a}")
-      File.write("./build/#{String.replace(a, ".markdown", ".html")}", Markdown.to_html(md))
+      { :ok, template } = File.read("./layout/post.eex")
+      File.write("./build/#{String.replace(a, ".markdown", ".html")}", EEx.eval_string(template, assigns: [content: Markdown.to_html(md)]))
     end)
   end
 

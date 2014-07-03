@@ -34,6 +34,7 @@ defmodule InitTaskTest do
     Obelisk.Tasks.Init.run([])
 
     assert File.dir? "./layout"
+    assert File.exists? "./layout/post.eex"
   end
 
   test "Init task creates initial config file" do

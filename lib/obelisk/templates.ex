@@ -32,4 +32,12 @@ defmodule Obelisk.Templates do
     """
   end
 
+  def post_template do
+  """
+  <div id="post">
+    <%= @content %>
+  </div>
+  """
+  end
+
 end
