@@ -9,6 +9,7 @@ defmodule InitTaskTest do
       File.rmdir "./pages"
       File.rmdir "./layout"
       File.rm "./site.yml"
+      File.rm_rf "./build"
     end
   end
 

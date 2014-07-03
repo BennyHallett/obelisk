@@ -10,6 +10,7 @@ defmodule Obelisk.Tasks.Build do
 
   def run(args) do
     { :ok, files } = File.ls("./posts")
+    File.rm_rf "./build"
     File.mkdir "./build"
     contents = Enum.map(files, fn a ->
       { :ok, md } = File.read("./posts/#{a}")
