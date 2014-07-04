@@ -12,4 +12,8 @@ defmodule Obelisk.Post do
     "./build/#{String.replace(md, ".markdown", ".html")}"
   end
 
+  def title(md) do
+    String.capitalize(String.replace(String.replace(String.slice(md, 11, 1000), "-", " "), ".markdown", ""))
+  end
+
 end

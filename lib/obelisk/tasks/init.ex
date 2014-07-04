@@ -34,6 +34,7 @@ defmodule Obelisk.Tasks.Init do
     File.mkdir "./layout"
     File.write "./layout/post.eex", Obelisk.Templates.post_template
     File.write "./layout/layout.eex", Obelisk.Templates.layout
+    File.write "./layout/index.eex", Obelisk.Templates.index
   end
 
 end

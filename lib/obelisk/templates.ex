@@ -55,4 +55,12 @@ defmodule Obelisk.Templates do
   """
   end
 
+  def index do
+    """
+    <div class="index">
+      <%= Enum.join(@content, "\n") %>
+    </div>
+    """
+  end
+
 end

@@ -1,0 +1,4 @@
+<div class="index">
+  <%= Enum.join(@content, "
+") %>
+</div>
