@@ -12,7 +12,7 @@ defmodule Obelisk.Tasks.Build do
     { :ok, files } = File.ls("./posts")
     File.rm_rf "./build"
     File.mkdir "./build"
-    contents = Enum.map(files, fn a ->
+    Enum.each(files, fn a ->
       { :ok, md } = File.read("./posts/#{a}")
       { :ok, template } = File.read("./layout/post.eex")
       { :ok, layout } = File.read("./layout/layout.eex")
