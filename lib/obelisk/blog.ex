@@ -4,7 +4,7 @@ defmodule Obelisk.Blog do
     { :ok, template } = File.read("./layout/index.eex")
     { :ok, layout } = File.read("./layout/layout.eex")
     File.write(html_filename(page_num),
-      EEx.eval_string(layout, assigns: [content: EEx.eval_string(template, assigns: [content: Enum.map(posts, &(post_link &1))])]))
+      EEx.eval_string(layout, assigns: [css: Obelisk.Assets.css, content: EEx.eval_string(template, assigns: [content: Enum.map(posts, &(post_link &1))])]))
   end
 
   def html_filename(page_num) when page_num <= 1 do

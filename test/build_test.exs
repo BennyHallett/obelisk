@@ -2,8 +2,8 @@ defmodule BuildTaskTest do
   use ExUnit.Case
 
   setup do
-    cleanup
-    on_exit fn -> cleanup end
+    TestHelper.cleanup
+    on_exit fn -> TestHelper.cleanup end
   end
 
   test "Build task compiles posts into the build dir" do
@@ -45,16 +45,6 @@ defmodule BuildTaskTest do
 
     `and some inline code` for good measure
     """
-  end
-
-  defp cleanup do
-    File.rm_rf "./assets"
-    File.rm_rf "./posts"
-    File.rmdir "./drafts"
-    File.rmdir "./pages"
-    File.rmdir "./layout"
-    File.rm "./site.yml"
-    File.rm_rf "./build"
   end
 
 end

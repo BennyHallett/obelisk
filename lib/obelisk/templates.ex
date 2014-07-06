@@ -46,7 +46,7 @@ defmodule Obelisk.Templates do
   <html>
     <head>
       <title>This should be replaced by whats in site.yml</title>
-      <link rel="stylesheet" href="assets/css/base.css" />
+      <%= @css %>
     </head>
 
     <body>
