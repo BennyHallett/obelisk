@@ -14,12 +14,12 @@ defmodule Obelisk.Tasks.Build do
     File.mkdir "./build"
 
     compile_blog Enum.reverse(files), div(Enum.count(files), 10) + 1
+    Obelisk.Assets.copy
   end
 
   defp compile_blog(posts, page_num) when page_num <= 1 do
     Enum.each posts, &(Obelisk.Post.compile &1)
     Obelisk.Blog.compile_index posts, page_num
-    # build index page
   end
 
   defp compile_blog(posts, page_num) do

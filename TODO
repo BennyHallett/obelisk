@@ -1,7 +1,6 @@
-* Copy everything from /assets into /build
-* Wrap generated html in a post.html template
-* Create an index file, based on index.html
 * Make it easy to create chaptered content
 * Use front matter to choose template to use
 * Have a way to auto load all js and css from /assets
-
+* Include partials
+* Half-decent initial templates
+* Setup my site with it
