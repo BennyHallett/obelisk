@@ -4,3 +4,7 @@
 * Include partials
 * Half-decent initial templates
 * Setup my site with it
+* Post command to create new post
+* Draft command to create new draft
+* PUblish command to move a draft into posts
+* Server command to host at localhost:3000
