@@ -2,9 +2,13 @@
 <html>
   <head>
     <title>This should be replaced by whats in site.yml</title>
+    <link rel="stylesheet" href="assets/css/base.css" />
   </head>
 
   <body>
-    <%= @content %>
+    <div class="container">
+      <h1>obelisk</h1>
+      <%= @content %>
+    </div>
   </body>
 </html>

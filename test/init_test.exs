@@ -20,6 +20,7 @@ defmodule InitTaskTest do
     assert File.dir? "./assets/css"
     assert File.dir? "./assets/js"
     assert File.dir? "./assets/img"
+    assert File.exists? "./assets/css/base.css"
   end
 
   test "Init task creates content directory structure" do

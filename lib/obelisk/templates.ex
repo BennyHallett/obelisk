@@ -46,10 +46,14 @@ defmodule Obelisk.Templates do
   <html>
     <head>
       <title>This should be replaced by whats in site.yml</title>
+      <link rel="stylesheet" href="assets/css/base.css" />
     </head>
 
     <body>
-      <%= @content %>
+      <div class="container">
+        <h1>obelisk</h1>
+        <%= @content %>
+      </div>
     </body>
   </html>
   """
@@ -60,6 +64,20 @@ defmodule Obelisk.Templates do
     <div class="index">
       <%= Enum.join(@content, "\n") %>
     </div>
+    """
+  end
+
+  def base_css do
+    """
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 980px;
+      margin: 0 auto;
+    }
     """
   end
 

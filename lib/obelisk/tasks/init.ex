@@ -22,6 +22,7 @@ defmodule Obelisk.Tasks.Init do
     File.mkdir "./assets/css"
     File.mkdir "./assets/js"
     File.mkdir "./assets/img"
+    File.write "./assets/css/base.css", Obelisk.Templates.base_css
   end
 
   defp create_content_dirs do
