@@ -14,7 +14,7 @@ defmodule Obelisk.Tasks.Build do
     File.mkdir "./build"
 
     Obelisk.Assets.copy
-    compile_blog Enum.reverse(files), div(Enum.count(files), 10) + 1
+    compile_blog(Enum.sort(Enum.reverse(files)), div(Enum.count(files), 10) + 1)
   end
 
   defp compile_blog(posts, page_num) when page_num <= 1 do

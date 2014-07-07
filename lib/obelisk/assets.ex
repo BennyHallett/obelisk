@@ -5,11 +5,11 @@ defmodule Obelisk.Assets do
   end
 
   def css_files do
-    Enum.map(File.ls!("./build/assets/css"), &("assets/css/#{&1}"))
+    Enum.map(Enum.sort(File.ls!("./build/assets/css")), &("assets/css/#{&1}"))
   end
 
   def js_files do
-    Enum.map(File.ls!("./build/assets/js"), &("assets/js/#{&1}"))
+    Enum.map(Enum.sort(File.ls!("./build/assets/js")), &("assets/js/#{&1}"))
   end
 
   def css do
