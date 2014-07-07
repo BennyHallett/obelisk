@@ -10,3 +10,5 @@
 * Server command to host at localhost:3000
 * Need to split off the post list correctly so that page 1 has 10
 * Add a --draft option to build so that we get drafts included
+* Add some output when processing commands
+* The build command should have --verbose logging
