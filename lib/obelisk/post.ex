@@ -5,7 +5,7 @@ defmodule Obelisk.Post do
     { :ok, template } = File.read("./layout/post.eex")
     { :ok, layout } = File.read("./layout/layout.eex")
     File.write(html_filename(md_file),
-      EEx.eval_string(layout, assigns: [content: EEx.eval_string(template, assigns: [content: Markdown.to_html(md)])]))
+      EEx.eval_string(layout, assigns: [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: EEx.eval_string(template, assigns: [content: Markdown.to_html(md)])]))
   end
 
   def html_filename(md) do
