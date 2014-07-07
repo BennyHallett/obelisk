@@ -20,9 +20,30 @@ defmodule AssetsTest do
     assert Enum.find(files, &(&1 == "assets/css/three.css")) != nil
   end
 
+  test "List of css files should not include directories" do
+    Obelisk.Tasks.Init.run([])
+    File.mkdir "./assets/css/folder"
+    Obelisk.Tasks.Build.run([])
+
+    files = Obelisk.Assets.css_files
+    assert 1 == Enum.count(files)
+    assert Enum.find(files, &(&1 == "assets/css/base.css")) != nil
+  end
+
   test "List out js files" do
     Obelisk.Tasks.Init.run([])
     File.touch "./assets/js/one.js"
+    Obelisk.Tasks.Build.run([])
+
+    files = Obelisk.Assets.js_files
+    assert 1 == Enum.count(files)
+    assert Enum.find(files, &(&1 == "assets/js/one.js")) != nil
+  end
+
+  test "List of js files should not include directories" do
+    Obelisk.Tasks.Init.run([])
+    File.touch "./assets/js/one.js"
+    File.mkdir "./assets/js/folder"
     Obelisk.Tasks.Build.run([])
 
     files = Obelisk.Assets.js_files
