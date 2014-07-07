@@ -9,3 +9,6 @@
 * Draft command to create new draft
 * PUblish command to move a draft into posts
 * Server command to host at localhost:3000
+* Need to order the posts so that they come out oldest first
+* Need to split off the post list correctly so that page 1 has 10
+* Add a --draft option to build so that we get drafts included
