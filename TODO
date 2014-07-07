@@ -1,6 +1,5 @@
 * Make it easy to create chaptered content
 * Use front matter to choose template to use
-* Have a way to auto load all js from /assets
 * Provide a good way to access images Obelisk.Image.render('')
 * Include partials
 * Half-decent initial templates
@@ -9,6 +8,5 @@
 * Draft command to create new draft
 * PUblish command to move a draft into posts
 * Server command to host at localhost:3000
-* Need to order the posts so that they come out oldest first
 * Need to split off the post list correctly so that page 1 has 10
 * Add a --draft option to build so that we get drafts included
