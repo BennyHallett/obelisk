@@ -1,6 +1,6 @@
 * Make it easy to create chaptered content
 * Use front matter to choose template to use
-* Have a way to auto load all js and css from /assets
+* Have a way to auto load all js from /assets
 * Provide a good way to access images Obelisk.Image.render('')
 * Include partials
 * Half-decent initial templates
