@@ -10,11 +10,16 @@ defmodule Obelisk.Tasks.Build do
 
   def run(args) do
     { :ok, files } = File.ls("./posts")
+    IO.puts "Cleaning build directory"
     File.rm_rf "./build"
     File.mkdir "./build"
 
+    IO.puts "Copying assets"
     Obelisk.Assets.copy
+
+    IO.puts "Compiling blog"
     compile_blog(Enum.sort(Enum.reverse(files)), div(Enum.count(files), 10) + 1)
+    IO.puts "Done"
   end
 
   defp compile_blog(posts, page_num) when page_num <= 1 do

@@ -15,9 +15,11 @@ defmodule Obelisk.Tasks.Init do
     date = String.rstrip(System.cmd("date +%Y-%m-%d"))
     File.write "./posts/#{date}-welcome-to-obelisk.markdown", Obelisk.Templates.post
     File.write './site.yml', Obelisk.Templates.config
+    IO.puts "Done"
   end
 
   defp create_assets_dirs do
+    IO.puts "Creating assets"
     File.mkdir "./assets"
     File.mkdir "./assets/css"
     File.mkdir "./assets/js"
@@ -26,12 +28,14 @@ defmodule Obelisk.Tasks.Init do
   end
 
   defp create_content_dirs do
+    IO.puts "Creating content structure"
     File.mkdir "./posts"
     File.mkdir "./drafts"
     File.mkdir "./pages"
   end
 
   defp create_layout_dirs do
+    IO.puts "Creating layout"
     File.mkdir "./layout"
     File.write "./layout/post.eex", Obelisk.Templates.post_template
     File.write "./layout/layout.eex", Obelisk.Templates.layout

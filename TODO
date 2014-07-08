@@ -1,13 +1,12 @@
 For 0.0.1
 
 * Some level of documentation (Just README.md for now)
-* Add some output when processing commands
-* The build command should have --verbose logging
 * Need to split off the post list correctly so that page 1 has 10
 
 
 
 
+* The build command should have --verbose logging
 * Make it easy to create chaptered content
 * Use front matter to choose template to use
 * Provide a good way to access images Obelisk.Image.render('')
