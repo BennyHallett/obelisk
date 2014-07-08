@@ -18,20 +18,18 @@ defmodule Obelisk.Tasks.Build do
     Obelisk.Assets.copy
 
     IO.puts "Compiling blog"
-    compile_blog(Enum.sort(Enum.reverse(files)), div(Enum.count(files), 10) + 1)
+    compile_blog(Enum.reverse(Enum.sort(files)), 1)
     IO.puts "Done"
   end
 
-  defp compile_blog(posts, page_num) when page_num <= 1 do
-    Enum.each posts, &(Obelisk.Post.compile &1)
-    Obelisk.Blog.compile_index posts, page_num
+  defp compile_blog(posts, page_num) when posts == [] do
   end
 
   defp compile_blog(posts, page_num) do
     { c, r } = Enum.split(posts, 10)
     Enum.each c, &(Obelisk.Post.compile &1)
     Obelisk.Blog.compile_index c, page_num
-    compile_blog r, page_num - 1
+    compile_blog r, page_num + 1
   end
 
 end
