@@ -1,3 +1,13 @@
+For 0.0.1
+
+* Some level of documentation (Just README.md for now)
+* Add some output when processing commands
+* The build command should have --verbose logging
+* Need to split off the post list correctly so that page 1 has 10
+
+
+
+
 * Make it easy to create chaptered content
 * Use front matter to choose template to use
 * Provide a good way to access images Obelisk.Image.render('')
@@ -8,7 +18,4 @@
 * Draft command to create new draft
 * PUblish command to move a draft into posts
 * Server command to host at localhost:3000
-* Need to split off the post list correctly so that page 1 has 10
 * Add a --draft option to build so that we get drafts included
-* Add some output when processing commands
-* The build command should have --verbose logging
