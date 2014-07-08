@@ -23,12 +23,12 @@ defmodule Obelisk.Blog do
     ""
   end
 
-  defp previous_page(page_num) do
-    "<a href=\"index#{page_num - 1}.html\">Previous Page</a>"
+  defp previous_page(page_num) when page_num == 2 do
+    "<a href=\"index.html\">Previous Page</a>"
   end
 
-  defp next_page(page_num) when page_num == 1 do
-    "<a href=\"index.html\">Next Page</a>"
+  defp previous_page(page_num) do
+    "<a href=\"index#{page_num - 1}.html\">Previous Page</a>"
   end
 
   defp next_page(page_num) do
