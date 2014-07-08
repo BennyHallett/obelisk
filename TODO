@@ -6,6 +6,7 @@ For 0.0.1
 
 
 * The build command should have --verbose logging
+* Shouldnt show a next button on the last page
 * Make it easy to create chaptered content
 * Use front matter to choose template to use
 * Provide a good way to access images Obelisk.Image.render('')
