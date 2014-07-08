@@ -1,12 +1,3 @@
-For 0.0.1
-
-* Build package and upload it
-* Tweet
-* Reddit post
-
-
-
-
 * The build command should have --verbose logging
 * Shouldnt show a next button on the last page
 * Make it easy to create chaptered content
