@@ -9,17 +9,13 @@ defmodule Obelisk.Tasks.Build do
   """
 
   def run(args) do
-    { :ok, files } = File.ls("./posts")
-    IO.puts "Cleaning build directory"
-    File.rm_rf "./build"
-    File.mkdir "./build"
+    Obelisk.Site.clean
 
-    IO.puts "Copying assets"
+    { :ok, files } = File.ls("./posts")
+
     Obelisk.Assets.copy
 
-    IO.puts "Compiling blog"
     compile_blog(Enum.reverse(Enum.sort(files)), 1)
-    IO.puts "Done"
   end
 
   defp compile_blog(posts, page_num) when posts == [] do

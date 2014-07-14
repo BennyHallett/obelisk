@@ -9,36 +9,7 @@ defmodule Obelisk.Tasks.Init do
   """
 
   def run(args) do
-    create_assets_dirs
-    create_content_dirs
-    create_layout_dirs
-    File.write "./posts/2014-01-01-welcome-to-obelisk.markdown", Obelisk.Templates.post
-    File.write './site.yml', Obelisk.Templates.config
-    IO.puts "Done"
-  end
-
-  defp create_assets_dirs do
-    IO.puts "Creating assets"
-    File.mkdir "./assets"
-    File.mkdir "./assets/css"
-    File.mkdir "./assets/js"
-    File.mkdir "./assets/img"
-    File.write "./assets/css/base.css", Obelisk.Templates.base_css
-  end
-
-  defp create_content_dirs do
-    IO.puts "Creating content structure"
-    File.mkdir "./posts"
-    File.mkdir "./drafts"
-    File.mkdir "./pages"
-  end
-
-  defp create_layout_dirs do
-    IO.puts "Creating layout"
-    File.mkdir "./layout"
-    File.write "./layout/post.eex", Obelisk.Templates.post_template
-    File.write "./layout/layout.eex", Obelisk.Templates.layout
-    File.write "./layout/index.eex", Obelisk.Templates.index
+    Obelisk.Site.initialize
   end
 
 end

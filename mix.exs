@@ -15,11 +15,12 @@ defmodule Obelisk.Mixfile do
   end
 
   def application do
-    [applications: []]
+    [applications: [:yamerl]]
   end
 
   defp deps do
-    [{:markdown, github: "devinus/markdown"}]
+    [{:yamerl, github: "yakaz/yamerl"},
+     {:markdown, github: "devinus/markdown"}]
   end
 
   defp package do
