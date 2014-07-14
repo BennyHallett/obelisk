@@ -10,12 +10,8 @@ defmodule Obelisk.Tasks.Build do
 
   def run(args) do
     Obelisk.Site.clean
-
-    { :ok, files } = File.ls("./posts")
-
     Obelisk.Assets.copy
-
-    compile_blog(Enum.reverse(Enum.sort(files)), 1)
+    Obelisk.Post.list |> Enum.sort |> Enum.reverse |> compile_blog 1
   end
 
   defp compile_blog(posts, page_num) when posts == [] do

@@ -16,4 +16,8 @@ defmodule Obelisk.Post do
     String.capitalize(String.replace(String.replace(String.slice(md, 11, 1000), "-", " "), ".markdown", ""))
   end
 
+  def list do
+    File.ls! "./posts"
+  end
+
 end
