@@ -19,11 +19,11 @@ defmodule Obelisk.Blog do
     "<a href=\"#{String.slice(Obelisk.Post.html_filename(post), 8, 1000)}\">#{Obelisk.Post.title(post)}</a>"
   end
 
-  defp previous_page(page_num) when page_num == 1 do
+  defp previous_page(1) do
     ""
   end
 
-  defp previous_page(page_num) when page_num == 2 do
+  defp previous_page(2) do
     "<a href=\"index.html\">Previous Page</a>"
   end
 
