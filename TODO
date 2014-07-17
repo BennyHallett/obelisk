@@ -11,3 +11,4 @@
 * PUblish command to move a draft into posts
 * Server command to host at localhost:3000
 * Add a --draft option to build so that we get drafts included
+* Switch to use Dave Thomas' markdown parser
