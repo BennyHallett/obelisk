@@ -7,8 +7,9 @@ defmodule Obelisk.Templates do
 
   def post do
     """
-    My brand new obelisk site
-    =========================
+    ---
+    title: My brand new obelisk site
+    ---
 
     Welcome to your brand new obelisk site.
 
@@ -35,6 +36,8 @@ defmodule Obelisk.Templates do
   def post_template do
   """
   <div id="post">
+    <%= @title %>
+    <hr />
     <%= @content %>
   </div>
   """
