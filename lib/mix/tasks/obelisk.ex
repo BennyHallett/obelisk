@@ -25,6 +25,7 @@ defmodule Mix.Tasks.Obelisk do
         "init" -> Obelisk.Tasks.Init.run(tail)
         "build" -> Obelisk.Tasks.Build.run(tail)
         "post" -> Obelisk.Tasks.Post.run(tail)
+        "draft" -> Obelisk.Tasks.Draft.run(tail)
       end
     end
   end

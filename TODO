@@ -1,14 +1,14 @@
 * The build command should have --verbose logging
 * Shouldnt show a next button on the last page
 * Make it easy to create chaptered content
-* Use front matter to choose template to use, and page title
 * Provide a good way to access images Obelisk.Image.render('')
 * Include partials
 * Half-decent initial templates
 * Setup my site with it
-* Post command to create new post
-* Draft command to create new draft
-* PUblish command to move a draft into posts
+* Publish command to move a draft into posts
+  - If a name isnt given, it should list out the available drafts
+    and give an option to choose one
 * Server command to host at localhost:3000
 * Add a --draft option to build so that we get drafts included
 * Switch to use Dave Thomas' markdown parser
+* Implement HELP command
