@@ -32,10 +32,7 @@ defmodule Obelisk.Post do
   end
 
   def filename_from_title(title) do
-    today = Chronos.today
-    month = today |> Chronos.Formatter.strftime("%m") |> String.rjust(2, ?0)
-    day = today |> Chronos.Formatter.strftime("%d") |> String.rjust(2, ?0)
-    datepart = today |> Chronos.Formatter.strftime("%Y-#{month}-#{day}")
+    datepart = Chronos.today |> Chronos.Formatter.strftime("%Y-%0m-%0d")
     titlepart = String.downcase(title) |> String.replace(" ", "-")
     "./posts/#{datepart}-#{titlepart}.markdown"
   end

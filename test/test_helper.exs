@@ -13,10 +13,7 @@ defmodule TestHelper do
   end
 
   def datepart do 
-    today = Chronos.today
-    month = today |> Chronos.Formatter.strftime("%m") |> String.rjust(2, ?0)
-    day = today |> Chronos.Formatter.strftime("%d") |> String.rjust(2, ?0)
-    today |> Chronos.Formatter.strftime("%Y-#{month}-#{day}")  
+    Chronos.today |> Chronos.Formatter.strftime("%Y-%0m-%0d")
   end
 
 end
