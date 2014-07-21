@@ -65,6 +65,14 @@ You can use the `post` command to quickly create a new post with todays date, al
 
     $ mix obelisk post "New obelisk feature"
 
+## Creating a draft
+
+Just like the post above us, we can create a draft. Drafts are intended to hold works in progress, and won't be compiled into the `/build` directory when running the build command.
+
+Again, the `draft` command can be used to quickly create a new draft, although creating the file manually will also work.
+
+    $ mix obelisk draft "Still working on this"
+
 ## Front matter
 
 Like other static site generators, posts should include front matter at the top of each file. Obelisk currently only accepts a `title` entry to be included in this front matter.
