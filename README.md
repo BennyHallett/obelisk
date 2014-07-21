@@ -57,6 +57,25 @@ out with the following structure
 
 At the moment, the supported directories are the `assets` directory, the `layout` directory, and the `posts` directory.
 
+## Creating a new post
+
+Obelisk expects blog post content to be located in the `/posts` directory, with filenames using the format `YYYY-mm-dd-post-title.markdown`. Any file matching this pattern will be processed and built into the `/build` directory.
+
+You can use the `post` command to quickly create a new post with todays date, although creating the file manually will also work.
+
+    $ mix obelisk post "New obelisk feature"
+
+## Front matter
+
+Like other static site generators, posts should include front matter at the top of each file. Obelisk currently only accepts a `title` entry to be included in this front matter.
+
+    ---
+    title: My brand new blog post
+    this: will be ignored
+    ---
+
+    Post content goes here
+
 ## The asset "pipeline"
 
 The asset "pipeline" is extremely simple at this stage. Anything under your `/assets` directory is copied to `/build/assets` when the `mix obelisk build` task is run.
