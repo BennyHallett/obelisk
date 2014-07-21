@@ -24,6 +24,7 @@ defmodule Mix.Tasks.Obelisk do
        case cmd do
         "init" -> Obelisk.Tasks.Init.run(tail)
         "build" -> Obelisk.Tasks.Build.run(tail)
+        "post" -> Obelisk.Tasks.Post.run(tail)
       end
     end
   end

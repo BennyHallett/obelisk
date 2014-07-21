@@ -5,23 +5,13 @@ defmodule Obelisk.Templates do
   for obelisk sites.
   """
 
-  def post do
+  def post(title) do
     """
     ---
-    title: My brand new obelisk site
+    title: #{title}
     ---
 
-    Welcome to your brand new obelisk site.
-
-    Blog posts go here, under the `/posts` directory. You can also put content in `/pages` and `/drafts`.
-
-    For developers, you can share code, either `inline like this`, or:
-
-        in a
-        block like
-        this
-
-    Enjoy!
+    Welcome to your brand new obelisk post.
     """
   end
 

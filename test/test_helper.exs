@@ -12,4 +12,11 @@ defmodule TestHelper do
     File.rm_rf "./build"
   end
 
+  def datepart do 
+    today = Chronos.today
+    month = today |> Chronos.Formatter.strftime("%m") |> String.rjust(2, ?0)
+    day = today |> Chronos.Formatter.strftime("%d") |> String.rjust(2, ?0)
+    today |> Chronos.Formatter.strftime("%Y-#{month}-#{day}")  
+  end
+
 end

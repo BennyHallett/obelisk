@@ -27,4 +27,17 @@ defmodule Obelisk.Post do
     { frontmatter, Enum.join(content, "\n") }
   end
 
+  def create(title) do
+    File.write(filename_from_title(title), Obelisk.Templates.post(title))
+  end
+
+  def filename_from_title(title) do
+    today = Chronos.today
+    month = today |> Chronos.Formatter.strftime("%m") |> String.rjust(2, ?0)
+    day = today |> Chronos.Formatter.strftime("%d") |> String.rjust(2, ?0)
+    datepart = today |> Chronos.Formatter.strftime("%Y-#{month}-#{day}")
+    titlepart = String.downcase(title) |> String.replace(" ", "-")
+    "./posts/#{datepart}-#{titlepart}.markdown"
+  end
+
 end

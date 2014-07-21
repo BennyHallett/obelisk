@@ -4,7 +4,7 @@ defmodule Obelisk.Site do
     create_assets_dirs
     create_content_dirs
     create_layout_dirs
-    File.write "./posts/2014-01-01-welcome-to-obelisk.markdown", Obelisk.Templates.post
+    Obelisk.Post.create("Welcome to Obelisk")
     File.write './site.yml', Obelisk.Templates.config
   end
 
