@@ -16,7 +16,7 @@ defmodule Obelisk.Blog do
   end
 
   defp post_link(post) do
-    "<a href=\"#{String.slice(Obelisk.Post.html_filename(post), 8, 1000)}\">#{Obelisk.Post.title(post)}</a>"
+    "<a href=\"#{String.slice(Obelisk.Document.html_filename(post), 8, 1000)}\">#{Obelisk.Post.title(post)}</a>"
   end
 
   defp previous_page(1) do
