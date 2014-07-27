@@ -21,7 +21,7 @@ defmodule Obelisk.Mixfile do
   defp deps do
     [{:yamerl, github: "yakaz/yamerl"},
      {:markdown, github: "devinus/markdown"},
-     {:chronos, "~> 0.3.2"}]
+     {:chronos, github: "nurugger07/chronos"}]
   end
 
   defp package do

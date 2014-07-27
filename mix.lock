@@ -1,4 +1,4 @@
-%{"chronos": {:package, "0.3.2"},
+%{"chronos": {:git, "git://github.com/nurugger07/chronos.git", "28ebaf433ae7bf605fecf665ad6b92d80eda2e2a", []},
   "hoedown": {:git, "git://github.com/hoedown/hoedown.git", "0610117f44b173a4e2112afb2f510156a32355b5", []},
   "markdown": {:git, "git://github.com/devinus/markdown.git", "0345e2044ba71780ba02b2591f1017703d0fa148", []},
   "yamerl": {:git, "git://github.com/yakaz/yamerl.git", "e087f5737425fd64cd2deb10e2b5e8f136f6034c", []}}
