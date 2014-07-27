@@ -9,6 +9,7 @@ defmodule Obelisk.Tasks.Build do
   """
 
   def run(args) do
+    Application.start :yamerl
     Obelisk.Site.clean
     Obelisk.Assets.copy
     Obelisk.Post.list |> Enum.sort |> Enum.reverse |> compile_blog 1
