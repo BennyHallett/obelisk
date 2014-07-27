@@ -1,7 +1,9 @@
 defmodule Obelisk.Post do
 
   def compile(md_file) do
-    Obelisk.Document.compile md_file, Obelisk.Layout.post
+    spawn_link fn ->
+      Obelisk.Document.compile md_file, Obelisk.Layout.post
+    end
   end
 
   def title(md) do

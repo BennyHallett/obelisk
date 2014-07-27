@@ -12,3 +12,8 @@
 * Add a --draft option to build so that we get drafts included
 * Switch to use Dave Thomas' markdown parser
 * Implement HELP command
+
+
+* Blog about performance, processing 10K docs
+  - Before: 16s
+  - After:  12s
