@@ -4,6 +4,10 @@ defmodule Obelisk.Layout do
     "./layout/layout.eex"
   end
 
+  def layout do
+    File.read!(path)
+  end
+
   def post do
     File.read!("./layout/post.eex")
   end

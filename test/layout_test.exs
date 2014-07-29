@@ -13,4 +13,8 @@ defmodule LayoutTest do
     assert String.contains?(Obelisk.Layout.post, "<div id=\"post\">")
   end
 
+  test "test get layout" do
+    assert String.contains?(Obelisk.Layout.layout, "<!DOCTYPE html>")
+  end
+
 end
