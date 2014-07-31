@@ -1,10 +1,10 @@
 defmodule Obelisk.Blog do
 
-  def compile_index(posts, page_num) do
+  def compile_index(posts, page_num, last_page) do
     { :ok, template } = File.read("./layout/index.eex")
     { :ok, layout } = File.read("./layout/layout.eex")
     File.write(html_filename(page_num),
-      EEx.eval_string(layout, assigns: [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: EEx.eval_string(template, assigns: [prev: previous_page(page_num), next: next_page(page_num), content: Enum.map(posts, &(post_link &1))])]))
+      EEx.eval_string(layout, assigns: [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: EEx.eval_string(template, assigns: [prev: previous_page(page_num), next: next_page(page_num, last_page), content: Enum.map(posts, &(post_link &1))])]))
   end
 
   def html_filename(page_num) when page_num <= 1 do
@@ -31,7 +31,11 @@ defmodule Obelisk.Blog do
     "<a href=\"index#{page_num - 1}.html\">Previous Page</a>"
   end
 
-  defp next_page(page_num) do
+  defp next_page(page_num, true) do
+    ""
+  end
+
+  defp next_page(page_num, false) do
     "<a href=\"index#{page_num + 1}.html\">Next Page</a>"
   end
 

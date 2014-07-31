@@ -1,5 +1,8 @@
+v 0.2.0
+* RSS Feed
+
+
 * The build command should have --verbose logging
-* Shouldnt show a next button on the last page
 * Make it easy to create chaptered content
 * Provide a good way to access images Obelisk.Image.render('')
 * Include partials
@@ -12,7 +15,6 @@
 * Add a --draft option to build so that we get drafts included
 * Switch to use Dave Thomas' markdown parser
 * Implement HELP command
-* RSS Feed
 * haml support
 * Move performance test into its own mix task
 

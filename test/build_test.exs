@@ -14,6 +14,13 @@ defmodule BuildTaskTest do
     Enum.each(10..15, fn day -> assert File.exists?("./build/#{filename(day)}.html") end)
   end
 
+  test "Index page doesnt include next link on last page" do
+    Obelisk.Tasks.Init.run([])
+    Obelisk.Tasks.Build.run([])
+
+    assert !String.contains? File.read!("./build/index.html"), "<a href=\"index2.html\">Next Page</a>"
+  end
+
   test "Build task copies assets into the build dir" do
     Obelisk.Tasks.Init.run([])
     Obelisk.Tasks.Build.run([])
