@@ -75,14 +75,25 @@ Again, the `draft` command can be used to quickly create a new draft, although c
 
 ## Front matter
 
-Like other static site generators, posts should include front matter at the top of each file. Obelisk currently only accepts a `title` entry to be included in this front matter.
+Like other static site generators, posts should include front matter at the top of each file.
 
     ---
     title: My brand new blog post
-    this: will be ignored
+    img: relative/path/to/bobby.png
+    author: Bobby Tables
+    twitter: littlebobbytables
     ---
 
     Post content goes here
+
+Now within the `post.eex` template, which we'll talk about a bit further down, we can access these value like this:
+
+    <div class="author">
+      <a href="http://twitter.com/#{@frontmatter.twitter}">
+        <img src="#{@frontmatter.img}" />
+        <%= @frontmatter.author %>
+      </a>
+    </div>
 
 ## The asset "pipeline"
 
