@@ -12,6 +12,9 @@
 * Add a --draft option to build so that we get drafts included
 * Switch to use Dave Thomas' markdown parser
 * Implement HELP command
+* RSS Feed
+* haml support
+* Move performance test into its own mix task
 
 
 * Blog about performance, processing 10K docs

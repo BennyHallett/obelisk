@@ -3,7 +3,7 @@ defmodule FrontMatterTest do
 
   test "can parse front matter" do
     fm = Obelisk.FrontMatter.parse frontmatter
-    assert fm == [{ 'title', 'awesome blog post' }]
+    assert fm == %{ title: "awesome blog post" }
   end
 
   defp frontmatter do

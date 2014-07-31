@@ -26,7 +26,7 @@ defmodule Obelisk.Templates do
   def post_template do
   """
   <div id="post">
-    <%= @title %>
+    <%= @frontmatter.title %>
     <hr />
     <%= @content %>
   </div>

@@ -34,8 +34,9 @@ defmodule BuildTaskTest do
 
   defp content do
     """
-    This is the heading
-    ===================
+    ---
+    title: This is the heading
+    ---
 
     * And
     * A
