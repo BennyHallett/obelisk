@@ -6,13 +6,13 @@ defmodule PerformanceTest do
     on_exit fn -> TestHelper.cleanup end
   end
 
-  test "Build task compiles posts into the build dir" do
-    Obelisk.Tasks.Init.run([])
-    make_10k_posts
-    IO.puts Chronos.Formatter.strftime(Chronos.now, "%Y-%0m-%0d-%H:%M:%S")
-    Obelisk.Tasks.Build.run([])
-    IO.puts Chronos.Formatter.strftime(Chronos.now, "%Y-%0m-%0d-%H:%M:%S")
-  end
+#  test "Build task compiles posts into the build dir" do
+#    Obelisk.Tasks.Init.run([])
+#    make_10k_posts
+#    IO.puts Chronos.Formatter.strftime(Chronos.now, "%Y-%0m-%0d-%H:%M:%S")
+#    Obelisk.Tasks.Build.run([])
+#    IO.puts Chronos.Formatter.strftime(Chronos.now, "%Y-%0m-%0d-%H:%M:%S")
+#  end
 
   defp make_10k_posts do
     1..10_000 |> Enum.each &(create_post &1)
