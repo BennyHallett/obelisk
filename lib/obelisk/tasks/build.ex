@@ -16,7 +16,13 @@ defmodule Obelisk.Tasks.Build do
   end
 
   defp compile_blog([], _, rss_items) do
-    channel = RSS.channel '1', '2', '3', '4', '5'
+    config = Obelisk.Config.config
+    channel = RSS.channel(
+      Dict.get(config, :name),
+      Dict.get(config, :url),
+      Dict.get(config, :description),
+      "",
+      Dict.get(config, :language, "en-us"))
     File.write("./build/blog.rss", RSS.feed(channel, rss_items))
   end
 

@@ -20,7 +20,9 @@ defmodule Obelisk.Templates do
     """
     ---
     name: A brand new static site
-
+    url: http://my.blog.url
+    description: This is my blog about things
+    language: en-us
     """
   end
 
