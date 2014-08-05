@@ -19,10 +19,12 @@ To create a new obelisk project, we use `mix`
 
     $ mix new blog
 
-We then modify our dependencies within `mix.exs` to include obelisk
+We then modify our dependencies within `mix.exs` to include obelisk, as well as the Erlang
+library yamerl.
 
     defp deps do
-      [{ :obelisk, github: "bennyhallett/obelisk" }]
+      [{ :obelisk, "~> 0.2.1" },
+       { :yamerl, github: "yakaz/yamerl"]
     end
 
 Next we need to download obelisk and compile it

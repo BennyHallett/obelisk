@@ -3,8 +3,8 @@ defmodule Obelisk.Mixfile do
 
   def project do
     [app: :obelisk,
-     version: "0.2.0",
-     elixir: "~> 0.14.2",
+     version: "0.2.1",
+     elixir: "~> 0.14.3",
      package: package,
      docs: [readme: true, main: "README.md"],
      description: """
@@ -20,13 +20,13 @@ defmodule Obelisk.Mixfile do
 
   defp deps do
     [{:yamerl, github: "yakaz/yamerl"},
-     {:markdown, github: "devinus/markdown"},
-     {:chronos, github: "nurugger07/chronos"}]
+     {:earmark, "0.1.8"},
+     {:chronos, "~> 0.3.4"}]
   end
 
   defp package do
     %{
-      licences: ["MIT"],
+      licenses: ["MIT"],
       contributors: ["Benny Hallett"],
       links: %{ "Github" => "https://github.com/bennyhallett/obelisk"}
     }
