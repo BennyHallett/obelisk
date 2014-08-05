@@ -27,6 +27,7 @@ defmodule Obelisk.Mixfile do
   defp package do
     %{
       licences: ["MIT"],
+      contributors: ["Benny Hallett"],
       links: %{ "Github" => "https://github.com/bennyhallett/obelisk"}
     }
   end
