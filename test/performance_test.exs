@@ -31,6 +31,7 @@ defmodule PerformanceTest do
     """
     ---
     title: Something
+    description: A bunch of lorem ipsums
     ---
 
     This is the heading

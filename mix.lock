@@ -1,3 +1,4 @@
 %{"chronos": {:package, "0.3.4"},
   "earmark": {:package, "0.1.8"},
+  "rss": {:package, "0.1.0"},
   "yamerl": {:git, "git://github.com/yakaz/yamerl.git", "6d57c3945af916f0c3b248cc3ec0eb51eea78a74", []}}

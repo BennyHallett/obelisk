@@ -43,6 +43,7 @@ defmodule BuildTaskTest do
     """
     ---
     title: This is the heading
+    description: This is the desc
     ---
 
     * And
