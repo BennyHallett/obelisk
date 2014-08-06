@@ -3,7 +3,7 @@ defmodule Obelisk.Mixfile do
 
   def project do
     [app: :obelisk,
-     version: "0.2.1",
+     version: "0.3.0",
      elixir: "~> 0.14.3",
      package: package,
      docs: [readme: true, main: "README.md"],
