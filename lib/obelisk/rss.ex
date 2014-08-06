@@ -6,10 +6,17 @@ defmodule Obelisk.RSS do
   end
 
   defp build_item(post) do
+    config = Obelisk.Config.config
+    url = Dict.get(config, :url, "") <> "/" <> String.replace(post, ".markdown", ".html")
     md = File.read! "./posts/#{post}"
     { frontmatter, md_content } =  Obelisk.Document.parts md
     fm = Obelisk.FrontMatter.parse frontmatter
-    RSS.item fm.title, fm.description, "Date", "link", "link"
+    RSS.item(
+      Dict.get(fm, :title),
+      Dict.get(fm, :description),
+      String.slice(post, 0, 10),
+      url,
+      url)
   end
 
 end
