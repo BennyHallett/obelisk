@@ -42,6 +42,7 @@ defmodule Obelisk.Templates do
   <html>
     <head>
       <title>This should be replaced by whats in site.yml</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <%= @css %>
       <%= @js %>
     </head>
