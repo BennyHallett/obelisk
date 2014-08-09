@@ -6,7 +6,7 @@ defmodule TestHelper do
     File.rm_rf "./assets"
     File.rm_rf "./posts"
     File.rm_rf "./drafts"
-    File.rmdir "./pages"
+    File.rm_rf "./pages"
     File.rmdir "./layout"
     File.rm "./site.yml"
     File.rm_rf "./build"
