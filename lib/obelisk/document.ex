@@ -1,7 +1,7 @@
 defmodule Obelisk.Document do
 
   def compile(md_file, template) do
-    md = File.read! "./posts/#{md_file}"
+    md = File.read! md_file
     { frontmatter, md_content } =  parts md
     fm = Obelisk.FrontMatter.parse frontmatter
     File.write(html_filename(md_file),
@@ -9,7 +9,8 @@ defmodule Obelisk.Document do
   end
 
   def html_filename(md) do
-    "./build/#{String.replace(md, ".markdown", ".html")}"
+    filepart = String.split(md, "/") |> Enum.reverse |> hd
+    "./build/#{String.replace(filepart, ".markdown", ".html")}"
   end
 
   def title(md) do

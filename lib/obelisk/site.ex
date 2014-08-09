@@ -32,6 +32,7 @@ defmodule Obelisk.Site do
     File.write "./layout/post.eex", Obelisk.Templates.post_template
     File.write "./layout/layout.eex", Obelisk.Templates.layout
     File.write "./layout/index.eex", Obelisk.Templates.index
+    File.write "./layout/page.eex", Obelisk.Templates.page_template
   end
 
 end

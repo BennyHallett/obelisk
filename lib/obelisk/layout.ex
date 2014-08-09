@@ -12,4 +12,8 @@ defmodule Obelisk.Layout do
     File.read!("./layout/post.eex")
   end
 
+  def page do
+    File.read!("./layout/page.eex")
+  end
+
 end

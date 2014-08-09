@@ -1,7 +1,7 @@
 defmodule Obelisk.Draft do
 
   def compile(md_file) do
-    Obelisk.Document.compile md_file, Obelisk.Layout.post
+    Obelisk.Document.compile "./drafts/#{md_file}", Obelisk.Layout.post
   end
 
   def title(md) do

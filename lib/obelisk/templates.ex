@@ -36,6 +36,16 @@ defmodule Obelisk.Templates do
   """
   end
 
+  def page_template do
+  """
+  <div id="page">
+    <%= @frontmatter.title %>
+    <hr />
+    <%= @content %>
+  </div>
+  """
+  end
+
   def layout do
   """
   <!DOCTYPE html>

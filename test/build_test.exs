@@ -14,6 +14,14 @@ defmodule BuildTaskTest do
     Enum.each(10..15, fn day -> assert File.exists?("./build/#{filename(day)}.html") end)
   end
 
+  test "Build task compiled pages into the build dir" do
+    Obelisk.Tasks.Init.run([])
+    Enum.each(10..15, fn day -> create_page day end)
+    Obelisk.Tasks.Build.run([])
+
+    Enum.each(10..15, fn day -> assert File.exists?("./build/#{pagename(day)}.html") end)
+  end
+
   test "Index page doesnt include next link on last page" do
     Obelisk.Tasks.Init.run([])
     Obelisk.Tasks.Build.run([])
@@ -35,8 +43,16 @@ defmodule BuildTaskTest do
     "2014-01-#{day}-post-with-day-#{day}"
   end
 
+  defp pagename(day) do
+    "page-#{day}"
+  end
+
   defp create_post(day) do
     File.write("./posts/#{filename(day)}.markdown", content)
+  end
+
+  defp create_page(day) do
+    File.write("./pages/#{pagename(day)}.markdown", content)
   end
 
   defp content do

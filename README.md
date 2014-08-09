@@ -75,6 +75,12 @@ Again, the `draft` command can be used to quickly create a new draft, although c
 
     $ mix obelisk draft "Still working on this"
 
+## Creating a page
+
+Pages are non-temporal content, such as an about page, which are built in the same was as posts, but not included in the site's RSS feed. These files can have any name, and need not start with a date stamp. For example `./pages/about-me.markdown` is a fine filename to use.
+
+Currently there is no command to create a page, however creating a file under `./pages` will work.
+
 ## Front matter
 
 Like other static site generators, posts should include front matter at the top of each file.

@@ -2,7 +2,7 @@ defmodule Obelisk.Post do
 
   def compile(md_file) do
     spawn_link fn ->
-      Obelisk.Document.compile md_file, Obelisk.Layout.post
+      Obelisk.Document.compile "./posts/#{md_file}", Obelisk.Layout.post
     end
   end
 

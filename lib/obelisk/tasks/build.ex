@@ -12,7 +12,8 @@ defmodule Obelisk.Tasks.Build do
     Application.start :yamerl
     Obelisk.Site.clean
     Obelisk.Assets.copy
-    Obelisk.Post.list |> Enum.sort |> Enum.reverse |> compile_blog 1, []
+    Obelisk.Page.list |> Enum.each &(Obelisk.Page.compile &1)
+    Obelisk.Post.list |> Enum.sort |> Enum.reverse |> compile_blog(1, [])
   end
 
   defp compile_blog([], _, rss_items) do
