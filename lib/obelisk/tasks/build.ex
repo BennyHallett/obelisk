@@ -28,7 +28,7 @@ defmodule Obelisk.Tasks.Build do
   end
 
   defp compile_blog(posts, page_num, rss_items) do
-    { c, r } = Enum.split(posts, 10)
+    { c, r } = Enum.split(posts, posts_per_page)
     Enum.each c, &(Obelisk.Post.compile &1)
     Obelisk.Blog.compile_index c, page_num, last_page?(r)
     items = Obelisk.RSS.compile_rss c, rss_items
@@ -41,6 +41,10 @@ defmodule Obelisk.Tasks.Build do
 
   defp last_page?(_) do
     false
+  end
+
+  defp posts_per_page do
+    Obelisk.Config.config.posts_per_page |> String.to_integer
   end
 
 end

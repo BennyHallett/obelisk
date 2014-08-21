@@ -39,6 +39,31 @@ defmodule BuildTaskTest do
     assert File.dir? "./build/assets/img"
   end
 
+  test "Config limits items per index page" do
+    Obelisk.Tasks.Init.run []
+    1..10 |> Enum.each(&(create_post &1))
+    File.write("site.yml", """
+    ---
+    name: My Blog
+    description: My Blog about things
+    url: http://my.blog.com
+    posts_per_page: 5
+    """)
+    Obelisk.Tasks.Build.run []
+
+    assert File.exists? "./build/index.html"
+    assert File.exists? "./build/index2.html"
+    assert File.exists? "./build/index3.html"
+
+    p1 = File.read!("./build/index.html") |> String.split("\.html")
+    p2 = File.read!("./build/index2.html") |> String.split("\.html")
+    p3 = File.read!("./build/index3.html") |> String.split("\.html")
+
+    assert length(p1) == 7 # one extra for next page
+    assert length(p2) == 8 # two extra for both next and prev
+    assert length(p3) == 3 # one extra for prev page
+  end
+
   defp filename(day) do
     "2014-01-#{day}-post-with-day-#{day}"
   end

@@ -23,6 +23,7 @@ defmodule Obelisk.Templates do
     url: http://my.blog.url
     description: This is my blog about things
     language: en-us
+    posts_per_page: 10
     """
   end
 
