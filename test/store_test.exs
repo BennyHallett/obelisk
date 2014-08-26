@@ -22,6 +22,16 @@ defmodule StoreTest do
     assert length(Dict.keys pages) == 0
   end
 
+  test "Layouts are loaded initially" do
+    { :ok, store } = Obelisk.Store.start_link
+
+    layouts = Obelisk.Store.get_layouts store
+    assert Obelisk.Layout.layout == layouts.layout
+    assert Obelisk.Layout.post == layouts.post
+    assert Obelisk.Layout.page == layouts.page
+
+  end
+
   test "Set configuration" do
     { :ok, store } = Obelisk.Store.start_link
     Obelisk.Store.set_config store, %{ a: "A", b: "B" }

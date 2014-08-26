@@ -9,6 +9,11 @@ defmodule Obelisk.Store do
       store = HashDict.put(store, :config, HashDict.new)
       store = HashDict.put(store, :posts, [])
       store = HashDict.put(store, :pages, [])
+      store = HashDict.put(store, :layouts, %{
+        layout: Obelisk.Layout.layout,
+        post:   Obelisk.Layout.post,
+        page:   Obelisk.Layout.page
+      })
       store
     end)
   end
@@ -55,6 +60,13 @@ defmodule Obelisk.Store do
   """
   def get_pages(store) do
     Agent.get(store, &HashDict.get(&1, :pages))
+  end
+
+  @doc """
+  Retrieve layouts from store
+  """
+  def get_layouts(store) do
+    Agent.get(store, &HashDict.get(&1, :layouts))
   end
 
 end
