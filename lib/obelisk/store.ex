@@ -8,6 +8,7 @@ defmodule Obelisk.Store do
       store = HashDict.new
       store = HashDict.put(store, :config, HashDict.new)
       store = HashDict.put(store, :posts, [])
+      store = HashDict.put(store, :pages, [])
       store
     end)
   end
@@ -39,6 +40,21 @@ defmodule Obelisk.Store do
   """
   def get_posts(store) do
     Agent.get(store, &HashDict.get(&1, :posts))
+  end
+
+  @doc """
+  Add a set of pages to the store
+  """
+  def add_pages(store, pages) do
+    current = Agent.get(store, &HashDict.get(&1, :pages))
+    Agent.update(store, &HashDict.put(&1, :pages, current ++ pages))
+  end
+
+  @doc """
+  Retrieve list of pages from store
+  """
+  def get_pages(store) do
+    Agent.get(store, &HashDict.get(&1, :pages))
   end
 
 end
