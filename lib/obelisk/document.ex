@@ -8,6 +8,19 @@ defmodule Obelisk.Document do
       EEx.eval_string(Obelisk.Layout.layout, assigns: [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: EEx.eval_string(template, assigns: [content: Earmark.to_html(md_content), frontmatter: fm])]))
   end
 
+  def prepare(md_file, template) do
+    md = File.read! md_file
+    { frontmatter, md_content } =  parts md
+    fm = Obelisk.FrontMatter.parse frontmatter
+    content = EEx.eval_string(template, assigns: [ content: Earmark.to_html(md_content), frontmatter: fm ])
+    assigns = [ js:       Obelisk.Assets.js,
+                css:      Obelisk.Assets.css,
+                content:  content
+              ]
+    document = EEx.eval_string(Obelisk.Layout.layout, assigns: assigns)
+    %{ frontmatter: fm, content: content, document: document }
+  end
+
   def html_filename(md) do
     filepart = String.split(md, "/") |> Enum.reverse |> hd
     "./build/#{String.replace(filepart, ".markdown", ".html")}"
