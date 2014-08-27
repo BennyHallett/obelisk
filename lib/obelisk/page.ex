@@ -6,6 +6,11 @@ defmodule Obelisk.Page do
     end
   end
 
+  def prepare(md_file, store) do
+    layouts = Obelisk.Store.get_layouts(store)
+    Obelisk.Store.add_pages(store, [ Obelisk.Document.prepare("./pages/#{md_file}", layouts.page) ])
+  end
+
   def list do
     File.ls! "./pages"
   end

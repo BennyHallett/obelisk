@@ -18,7 +18,13 @@ defmodule Obelisk.Document do
                 content:  content
               ]
     document = EEx.eval_string(Obelisk.Layout.layout, assigns: assigns)
-    %{ frontmatter: fm, content: content, document: document }
+    %{ frontmatter: fm, content: content, document: document, path: html_filename(md_file) }
+  end
+
+  def write_all(pages) do
+    Enum.each pages, fn page ->
+      File.write page.path, page.document
+    end
   end
 
   def html_filename(md) do

@@ -12,7 +12,17 @@ defmodule Obelisk.Tasks.Build do
     Application.start :yamerl
     Obelisk.Site.clean
     Obelisk.Assets.copy
-    Obelisk.Page.list |> Enum.each &(Obelisk.Page.compile &1)
+
+    { :ok, store } = Obelisk.Store.start_link
+    Obelisk.Page.list |> Enum.each &(Obelisk.Page.prepare(&1, store))
+    Obelisk.Post.list |> Enum.each &(Obelisk.Post.prepare(&1, store))
+
+    Obelisk.Document.write_all Obelisk.Store.get_pages(store)
+    # Do the same with Posts
+    # Process the RSS Feed
+    # Write the indexes
+
+    # This is the old way
     Obelisk.Post.list |> Enum.sort |> Enum.reverse |> compile_blog(1, [])
   end
 

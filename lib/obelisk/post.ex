@@ -6,6 +6,11 @@ defmodule Obelisk.Post do
     end
   end
 
+  def prepare(md_file, store) do
+    layouts = Obelisk.Store.get_layouts(store)
+    Obelisk.Store.add_pages(store, [ Obelisk.Document.prepare("./posts/#{md_file}", layouts.post) ])
+  end
+
   def title(md) do
     String.capitalize(String.replace(String.replace(String.slice(md, 11, 1000), "-", " "), ".markdown", ""))
   end
