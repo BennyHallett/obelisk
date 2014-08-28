@@ -6,7 +6,6 @@ defmodule Obelisk.Store do
   def start_link do
     Agent.start_link( fn ->
       store = HashDict.new
-      store = HashDict.put(store, :config, HashDict.new)
       store = HashDict.put(store, :posts, [])
       store = HashDict.put(store, :pages, [])
       store = HashDict.put(store, :layouts, %{
@@ -14,6 +13,7 @@ defmodule Obelisk.Store do
         post:   Obelisk.Layout.post,
         page:   Obelisk.Layout.page
       })
+      store = HashDict.put(store, :config, Obelisk.Config.config)
       store
     end)
   end

@@ -1,11 +1,9 @@
 defmodule StoreTest do
   use ExUnit.Case, async: true
 
-  test "Initial config is empty" do
-    { :ok, store } = Obelisk.Store.start_link
-
-    cfg = Obelisk.Store.get_config(store)
-    assert length(Dict.keys(cfg)) ==  0
+  setup do
+    Obelisk.Tasks.Init.run []
+    on_exit fn -> TestHelper.cleanup end
   end
 
   test "Initial posts are empty" do
@@ -29,7 +27,17 @@ defmodule StoreTest do
     assert Obelisk.Layout.layout == layouts.layout
     assert Obelisk.Layout.post == layouts.post
     assert Obelisk.Layout.page == layouts.page
+  end
 
+  test "Config is loaded initially" do
+    { :ok, store } = Obelisk.Store.start_link
+
+    config = Obelisk.Store.get_config(store)
+    assert config.name == "A brand new static site"
+    assert config.url == "http://my.blog.url"
+    assert config.description == "This is my blog about things"
+    assert config.language == "en-us"
+    assert config.posts_per_page == "10"
   end
 
   test "Set configuration" do
