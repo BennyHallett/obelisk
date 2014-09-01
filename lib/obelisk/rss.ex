@@ -1,20 +1,26 @@
 defmodule Obelisk.RSS do
 
-  def compile_rss(posts, accumulator) do
-    n = posts |> Enum.map &(build_item &1)
-    accumulator ++ n
+  def build_feed(posts, config) do
+    channel = RSS.channel(
+      Dict.get(config, :name),
+      Dict.get(config, :url),
+      Dict.get(config, :description),
+      Chronos.Formatter.strftime(Chronos.now, "%Y-%0m-%0d %H:%M:%S"),
+      Dict.get(config, :language, "en-us"))
+    File.write("./build/blog.rss", RSS.feed(channel, compile_rss(posts)))
+  end
+
+  defp compile_rss(posts) do
+    posts |> Enum.map &(build_item &1)
   end
 
   defp build_item(post) do
     config = Obelisk.Config.config
-    url = Dict.get(config, :url, "") <> "/" <> String.replace(post, ".markdown", ".html")
-    md = File.read! "./posts/#{post}"
-    { frontmatter, md_content } =  Obelisk.Document.parts md
-    fm = Obelisk.FrontMatter.parse frontmatter
+    url = Dict.get(config, :url, "") <> "/" <> post.filename
     RSS.item(
-      Dict.get(fm, :title),
-      Dict.get(fm, :description),
-      String.slice(post, 0, 10),
+      Dict.get(post.frontmatter, :title),
+      Dict.get(post.frontmatter, :description),
+      String.slice(post.filename, 0, 10),
       url,
       url)
   end

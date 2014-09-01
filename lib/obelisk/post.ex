@@ -8,7 +8,7 @@ defmodule Obelisk.Post do
 
   def prepare(md_file, store) do
     layouts = Obelisk.Store.get_layouts(store)
-    Obelisk.Store.add_pages(store, [ Obelisk.Document.prepare("./posts/#{md_file}", layouts.post) ])
+    Obelisk.Store.add_posts(store, [ Obelisk.Document.prepare("./posts/#{md_file}", layouts.post) ])
   end
 
   def title(md) do
@@ -16,7 +16,9 @@ defmodule Obelisk.Post do
   end
 
   def list do
-    File.ls! "./posts"
+    File.ls!("./posts")
+    |> Enum.sort
+    |> Enum.reverse
   end
 
   def create(title) do

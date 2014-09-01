@@ -16,4 +16,8 @@ defmodule Obelisk.Layout do
     File.read!("./layout/page.eex")
   end
 
+  def index do
+    File.read!("./layout/index.eex")
+  end
+
 end

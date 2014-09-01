@@ -11,7 +11,8 @@ defmodule Obelisk.Store do
       store = HashDict.put(store, :layouts, %{
         layout: Obelisk.Layout.layout,
         post:   Obelisk.Layout.post,
-        page:   Obelisk.Layout.page
+        page:   Obelisk.Layout.page,
+        index:  Obelisk.Layout.index
       })
       store = HashDict.put(store, :config, Obelisk.Config.config)
       store

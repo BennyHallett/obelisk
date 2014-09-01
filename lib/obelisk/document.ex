@@ -18,7 +18,7 @@ defmodule Obelisk.Document do
                 content:  content
               ]
     document = EEx.eval_string(Obelisk.Layout.layout, assigns: assigns)
-    %{ frontmatter: fm, content: content, document: document, path: html_filename(md_file) }
+    %{ frontmatter: fm, content: content, document: document, path: html_filename(md_file), filename: file_name(md_file)  }
   end
 
   def write_all(pages) do
@@ -27,9 +27,13 @@ defmodule Obelisk.Document do
     end
   end
 
+  def file_name(md) do
+    filepart = String.split("#{md}", "/") |> Enum.reverse |> hd
+    String.replace(filepart, ".markdown", ".html")
+  end
+
   def html_filename(md) do
-    filepart = String.split(md, "/") |> Enum.reverse |> hd
-    "./build/#{String.replace(filepart, ".markdown", ".html")}"
+    "./build/#{file_name(md)}"
   end
 
   def title(md) do

@@ -18,43 +18,10 @@ defmodule Obelisk.Tasks.Build do
     Obelisk.Post.list |> Enum.each &(Obelisk.Post.prepare(&1, store))
 
     Obelisk.Document.write_all Obelisk.Store.get_pages(store)
-    # Do the same with Posts
-    # Process the RSS Feed
-    # Write the indexes
-
-    # This is the old way
-    Obelisk.Post.list |> Enum.sort |> Enum.reverse |> compile_blog(1, [])
-  end
-
-  defp compile_blog([], _, rss_items) do
-    config = Obelisk.Config.config
-    channel = RSS.channel(
-      Dict.get(config, :name),
-      Dict.get(config, :url),
-      Dict.get(config, :description),
-      Chronos.Formatter.strftime(Chronos.now, "%Y-%0m-%0d %H:%M:%S"),
-      Dict.get(config, :language, "en-us"))
-    File.write("./build/blog.rss", RSS.feed(channel, rss_items))
-  end
-
-  defp compile_blog(posts, page_num, rss_items) do
-    { c, r } = Enum.split(posts, posts_per_page)
-    Enum.each c, &(Obelisk.Post.compile &1)
-    Obelisk.Blog.compile_index c, page_num, last_page?(r)
-    items = Obelisk.RSS.compile_rss c, rss_items
-    compile_blog r, page_num + 1, items
-  end
-
-  defp last_page?([]) do
-    true
-  end
-
-  defp last_page?(_) do
-    false
-  end
-
-  defp posts_per_page do
-    Obelisk.Config.config.posts_per_page |> String.to_integer
+    posts = Obelisk.Store.get_posts(store)
+    Obelisk.Document.write_all posts
+    Obelisk.RSS.build_feed posts, Obelisk.Store.get_config(store)
+    Obelisk.Blog.compile_index(posts, store)
   end
 
 end
