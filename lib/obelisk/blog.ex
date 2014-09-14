@@ -15,7 +15,7 @@ defmodule Obelisk.Blog do
       EEx.eval_string(templates.layout, assigns: [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: EEx.eval_string(templates.index, assigns: [prev: previous_page(page_num), next: next_page(page_num, last_page), content: Enum.map(posts, &(post_link &1))])]))
   end
 
-  defp last_page?([]), do; true
+  defp last_page?([]), do: true
   defp last_page?(_),  do: false
 
   def html_filename(1),        do: "./build/index.html"
