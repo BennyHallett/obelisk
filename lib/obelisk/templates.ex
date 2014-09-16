@@ -16,6 +16,17 @@ defmodule Obelisk.Templates do
     """
   end
 
+  def page(title) do
+    """
+    ---
+    title: #{title}
+    description: A new page
+    ---
+
+    Welcome to your brand new page.
+    """
+  end
+
   def config do
     """
     ---

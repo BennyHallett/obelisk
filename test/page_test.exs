@@ -11,7 +11,7 @@ defmodule PageTest do
     File.touch "./pages/about-me.markdown"
     pages = Obelisk.Page.list
     assert 1 == Enum.count(pages)
-    [h|t] = pages
+    [h|_] = pages
     assert h == "about-me.markdown"
   end
 

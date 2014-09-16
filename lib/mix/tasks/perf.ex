@@ -5,7 +5,7 @@ defmodule Mix.Tasks.Perf do
   @moduledoc """
   Runs obelisk performance benchmarks.
   """
-  def run(args) do
+  def run(_) do
     Obelisk.Tasks.Init.run([])
     make_10k_posts
     IO.puts Chronos.Formatter.strftime(Chronos.now, "%Y-%0m-%0d-%H:%M:%S")
