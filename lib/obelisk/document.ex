@@ -12,7 +12,7 @@ defmodule Obelisk.Document do
     md = File.read! md_file
     { frontmatter, md_content } =  parts md
     fm = Obelisk.FrontMatter.parse frontmatter
-    content = EEx.eval_string(template, assigns: [ content: Earmark.to_html(md_content), frontmatter: fm ])
+    content = EEx.eval_string(template, assigns: [ content: Earmark.to_html(md_content), frontmatter: fm, filename: file_name(md_file) ])
     assigns = [ js:       Obelisk.Assets.js,
                 css:      Obelisk.Assets.css,
                 content:  content

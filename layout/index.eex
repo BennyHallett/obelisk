@@ -1,6 +1,0 @@
-<div class="index">
-  <%= Enum.join(@content, "
-") %>
-  <%= @prev %>
-  <%= @next %>
-</div>

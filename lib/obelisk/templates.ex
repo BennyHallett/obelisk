@@ -30,8 +30,9 @@ defmodule Obelisk.Templates do
   def post_template do
   """
   <div id="post">
-    <%= @frontmatter.title %>
-    <hr />
+    <h2>
+      <a href="<%= @filename %>"><%= @frontmatter.title %></a>
+    </h2>
     <%= @content %>
   </div>
   """
@@ -71,7 +72,12 @@ defmodule Obelisk.Templates do
   def index do
     """
     <div class="index">
-      <%= Enum.join(@content, "\n") %>
+      <%= Enum.map @content, fn(post) ->
+        \"\"\"
+        #\{post.content}
+        <hr />
+        \"\"\"
+      end %>
       <%= @prev %>
       <%= @next %>
     </div>

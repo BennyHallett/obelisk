@@ -1,5 +1,0 @@
-<div id="page">
-  <%= @frontmatter.title %>
-  <hr />
-  <%= @content %>
-</div>

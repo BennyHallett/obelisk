@@ -12,7 +12,7 @@ defmodule Obelisk.Blog do
   defp write_index_page(posts, page_num, last_page, store) do
     templates = Obelisk.Store.get_layouts(store)
     File.write(html_filename(page_num),
-      EEx.eval_string(templates.layout, assigns: [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: EEx.eval_string(templates.index, assigns: [prev: previous_page(page_num), next: next_page(page_num, last_page), content: Enum.map(posts, &(post_link &1))])]))
+      EEx.eval_string(templates.layout, assigns: [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: EEx.eval_string(templates.index, assigns: [prev: previous_page(page_num), next: next_page(page_num, last_page), content: posts ])]))
   end
 
   defp last_page?([]), do: true
@@ -20,8 +20,6 @@ defmodule Obelisk.Blog do
 
   def html_filename(1),        do: "./build/index.html"
   def html_filename(page_num), do: "./build/index#{page_num}.html"
-
-  defp post_link(post), do: "<a href=\"#{post.filename}\">#{post.frontmatter.title}</a>"
 
   defp previous_page(1),        do: ""
   defp previous_page(2),        do: "<a href=\"index.html\">Previous Page</a>"
