@@ -2,23 +2,14 @@ v 0.2.0
 * RSS Feed
 
 
-* The build command should have --verbose logging
 * Make it easy to create chaptered content
 * Provide a good way to access images Obelisk.Image.render('')
 * Include partials
 * Half-decent initial templates
-* Setup my site with it
 * Publish command to move a draft into posts
   - If a name isnt given, it should list out the available drafts
     and give an option to choose one
 * Server command to host at localhost:3000
 * Add a --draft option to build so that we get drafts included
-* Switch to use Dave Thomas' markdown parser
 * Implement HELP command
 * haml support
-* Move performance test into its own mix task
-
-
-* Blog about performance, processing 10K docs
-  - Before: 16s
-  - After:  12s

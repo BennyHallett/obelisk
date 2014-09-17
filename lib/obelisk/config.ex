@@ -1,9 +1,8 @@
 defmodule Obelisk.Config do
 
-  def config do
-    unless File.exists? "site.yml" do raise(RuntimeError, message: "Couldn't find configuration file: site.yml") end
-    yaml = File.read! "site.yml"
-    Obelisk.YamlToDict.convert %{}, hd(:yamerl_constr.string(yaml))
-  end
+  def config, do: _config(File.read("site.yml"))
+
+  def _config({ :error, _ }), do: raise(RuntimeError, message: "Couldn't find configuration file: site.yml")
+  def _config({ :ok, content }), do: Obelisk.YamlToDict.convert(%{}, hd(:yamerl_constr.string(content)))
 
 end
