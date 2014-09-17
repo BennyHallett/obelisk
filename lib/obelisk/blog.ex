@@ -25,7 +25,7 @@ defmodule Obelisk.Blog do
   defp previous_page(2),        do: "<a href=\"index.html\">Previous Page</a>"
   defp previous_page(page_num), do: "<a href=\"index#{page_num - 1}.html\">Previous Page</a>"
 
-  defp next_page(page_num, true),  do: ""
+  defp next_page(_page_num, true),  do: ""
   defp next_page(page_num, false), do: "<a href=\"index#{page_num + 1}.html\">Next Page</a>"
 
 end

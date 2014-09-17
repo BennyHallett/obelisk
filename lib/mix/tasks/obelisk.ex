@@ -25,6 +25,6 @@ defmodule Mix.Tasks.Obelisk do
   defp _run(["build"|args]), do: Obelisk.Tasks.Build.run(args)
   defp _run(["post" |args]), do: Obelisk.Tasks.Post.run(args)
   defp _run(["draft"|args]), do: Obelisk.Tasks.Draft.run(args)
-  defp _run([cmd|args]),       do: raise(Mix.Error, message: "the command `#{cmd}` is not known.")
+  defp _run([cmd|_]),       do: raise(Mix.Error, message: "the command `#{cmd}` is not known.")
 
 end

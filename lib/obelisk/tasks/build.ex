@@ -8,7 +8,7 @@ defmodule Obelisk.Tasks.Build do
   None.
   """
 
-  def run(args) do
+  def run(_) do
     Application.start :yamerl
     Obelisk.Site.clean
     Obelisk.Assets.copy

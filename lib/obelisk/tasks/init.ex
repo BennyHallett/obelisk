@@ -8,7 +8,7 @@ defmodule Obelisk.Tasks.Init do
   None.
   """
 
-  def run(args) do
+  def run(_) do
     Obelisk.Site.initialize
   end
 
