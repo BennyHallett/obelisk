@@ -16,23 +16,15 @@ defmodule Mix.Tasks.Obelisk do
   * $ mix obelisk help      - Show help for a specific task
   """
   def run(args) do
-    opts = OptionParser.parse(args)
-    case elem(opts, 1) do
-      [] -> raise Mix.Error, message: "expected COMMAND to be given"
-      [cmd|tail] ->
-        validate_cmd! cmd
-       case cmd do
-        "init" -> Obelisk.Tasks.Init.run(tail)
-        "build" -> Obelisk.Tasks.Build.run(tail)
-        "post" -> Obelisk.Tasks.Post.run(tail)
-        "draft" -> Obelisk.Tasks.Draft.run(tail)
-      end
-    end
+    OptionParser.parse(args)
+    |> elem(1)
+    |> _run
   end
 
-  defp validate_cmd!(cmd) do
-    valid = Enum.any? ["init", "build", "server", "draft", "post", "page", "help"], &(&1 == cmd)
-    unless valid do raise Mix.Error, message: "the command `#{cmd}` is not known." end
-  end
+  defp _run(["init" |args]), do: Obelisk.Tasks.Init.run(args)
+  defp _run(["build"|args]), do: Obelisk.Tasks.Build.run(args)
+  defp _run(["post" |args]), do: Obelisk.Tasks.Post.run(args)
+  defp _run(["draft"|args]), do: Obelisk.Tasks.Draft.run(args)
+  defp _run([cmd|args]),       do: raise(Mix.Error, message: "the command `#{cmd}` is not known.")
 
 end
