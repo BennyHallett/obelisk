@@ -3,6 +3,8 @@ obelisk
 
 Static Site Generator written in Elixir.
 
+[![Build Status](https://travis-ci.org/BennyHallett/obelisk.svg?branch=master)](https://travis-ci.org/BennyHallett/obelisk)
+
 ## Goals
 
 * **Fast**. Static websites can take a long time to generate when they start to grow large.
