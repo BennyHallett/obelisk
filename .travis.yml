@@ -16,4 +16,4 @@ before_install:
   
 install: mix deps.get
 
-script: mix test --no-start
+script: mix test
