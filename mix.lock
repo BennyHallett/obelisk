@@ -1,4 +1,8 @@
 %{"chronos": {:package, "0.3.7"},
+  "cowboy": {:package, "1.0.0"},
+  "cowlib": {:package, "1.0.0"},
   "earmark": {:package, "0.1.10"},
+  "plug": {:package, "0.8.0"},
+  "ranch": {:package, "1.0.0"},
   "rss": {:package, "0.2.1"},
   "yamerl": {:git, "git://github.com/yakaz/yamerl.git", "a974d31325106fb4e8423e1af43e1dd9018d1218", []}}

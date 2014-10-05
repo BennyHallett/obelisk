@@ -15,13 +15,15 @@ defmodule Obelisk.Mixfile do
   end
 
   def application do
-    [applications: [:yamerl]]
+    [applications: [:yamerl, :cowboy, :plug]]
   end
 
   defp deps do
     [{:yamerl, github: "yakaz/yamerl"},
      {:earmark, "~> 0.1.10"},
      {:chronos, "~> 0.3.7"},
+     {:cowboy, "~> 1.0.0"},
+     {:plug, "~> 0.8.0"},
      {:rss, "~> 0.2.1"}]
   end
 
