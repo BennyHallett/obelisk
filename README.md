@@ -44,6 +44,14 @@ We can build our obelisk project now. It will look pretty basic without modifica
 
     $ mix obelisk build
 
+Once our project is built, we can check it out by starting the server.
+
+    $ mix obelisk server
+
+Now browse to `http://localhost:4000/index.html`
+
+> NOTE: The /index.html is required (for now). There's an issue in the tracker to make the index page load from the root path.
+
 ## Structure
 
 Now that we've got our project, you will notice that an obelisk project is set
