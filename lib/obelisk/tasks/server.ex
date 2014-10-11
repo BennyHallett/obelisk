@@ -12,10 +12,13 @@ defmodule Obelisk.Tasks.Server do
     Application.start :cowboy
     Application.start :plug
     IO.puts "Starting Cowboy server. Browse to http://localhost:4000/index.html"
-    Plug.Adapters.Cowboy.http Obelisk.Plug.Server, []
-    _continue
+    { :ok, pid } = Plug.Adapters.Cowboy.http Obelisk.Plug.Server, []
+
+    wait_til_dead pid
   end
 
-  defp _continue, do: _continue
+  defp wait_til_dead(pid), do: _wait_til_dead(pid, Process.alive?(pid))
+  defp _wait_til_dead(pid, true), do: _wait_til_dead(pid, Process.alive?(pid))
+  defp _wait_til_dead(_, _), do: nil
 
 end
