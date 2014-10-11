@@ -1,4 +1,5 @@
-%{"chronos": {:package, "0.3.7"},
+%{"anubis": {:package, "0.1.0"},
+  "chronos": {:package, "0.3.7"},
   "cowboy": {:package, "1.0.0"},
   "cowlib": {:package, "1.0.0"},
   "earmark": {:package, "0.1.10"},

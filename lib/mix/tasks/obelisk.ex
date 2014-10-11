@@ -1,31 +1,21 @@
 defmodule Mix.Tasks.Obelisk do
-  use Mix.Task
+  use Anubis
 
   @shortdoc "Run obelisk tasks."
   @moduledoc """
   Runs obelisk tasks.
 
-  ## Available tasks
+  To view available commands, run:
 
-  * $ mix obelisk init      - Creates the scaffolding for the static site
-  * $ mix obelisk build     - Compile the site to the ./site directory
-  * $ mix obelisk server    - Run a server to view the static site
-  * $ mix obelisk draft     - Create a new draft
-  * $ mix obelisk post      - Create a new post
-  * $ mix obelisk page      - Create a new page
-  * $ mix obelisk help      - Show help for a specific task
+      $ mix obelisk help
   """
-  def run(args) do
-    OptionParser.parse(args)
-    |> elem(1)
-    |> _run
-  end
 
-  defp _run(["init" |args]),  do: Obelisk.Tasks.Init.run(args)
-  defp _run(["build"|args]),  do: Obelisk.Tasks.Build.run(args)
-  defp _run(["post" |args]),  do: Obelisk.Tasks.Post.run(args)
-  defp _run(["draft"|args]),  do: Obelisk.Tasks.Draft.run(args)
-  defp _run(["server"|args]), do: Obelisk.Tasks.Server.run(args)
-  defp _run([cmd|_]),       do: raise(Mix.Error, message: "the command `#{cmd}` is not known.")
+  command :init,   "Creates the scaffolding for the static site", Obelisk.Tasks.Init.run
+  command :build,  "Compile the site to the ./build directory",   Obelisk.Tasks.Build.run
+  command :post,   "Create a new post",                           Obelisk.Tasks.Post.run
+  command :draft,  "Create a new draft",                          Obelisk.Tasks.Draft.run
+  command :server, "Start a local server to host the site",       Obelisk.Tasks.Server.run
+
+  parse
 
 end
