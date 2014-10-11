@@ -4,6 +4,7 @@ obelisk
 Static Site Generator written in Elixir.
 
 [![Build Status](https://travis-ci.org/BennyHallett/obelisk.svg?branch=master)](https://travis-ci.org/BennyHallett/obelisk)
+[![Package](http://img.shields.io/hexpm/v/obelisk.svg)](https://hex.pm/packages/obelisk)
 
 ## Goals
 
