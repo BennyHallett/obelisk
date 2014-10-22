@@ -2,6 +2,7 @@ defmodule Obelisk.Plug.Server do
   use Plug.Builder
 
   plug Plug.Static, at: "/", from: "./build/"
+  plug Obelisk.Plug.Index
   plug :not_found
 
   def not_found(conn, _) do
