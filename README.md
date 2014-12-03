@@ -26,7 +26,7 @@ We then modify our dependencies within `mix.exs` to include obelisk, as well as 
 library yamerl.
 
     defp deps do
-      [{ :obelisk, "~> 0.2.1" },
+      [{ :obelisk, "~> 0.7.1" },
        { :yamerl, github: "yakaz/yamerl"}]
     end
 
@@ -57,16 +57,16 @@ out with the following structure
 
     /
     /site.yml
-    /assets/
-    /assets/css/
-    /assets/js/
-    /assets/img/
+    /themes/
+    /themes/default/
+    /themes/default/assets/
+    /themes/default/assets/css/
+    /themes/default/assets/js/
+    /themes/default/assets/img/
+    /themes/default/layout
     /posts/
     /drafts/
     /pages/
-    /layout/
-
-At the moment, the supported directories are the `assets` directory, the `layout` directory, and the `posts` directory.
 
 ## Creating a new post
 
@@ -112,13 +112,31 @@ Now within the `post.eex` template, which we'll talk about a bit further down, w
       </a>
     </div>
 
+## Themes
+
+Since Obelisk v1.0.0, you are now able to customize your site with various
+themes. These themes are stored in the `/themes/` directory, each in their own
+individual directory.
+
+After the init task is run, you will have access to the default theme, in:
+
+    /themes/default/
+
+You can have multiple themes under the `themes` directory. The theme which is
+used at build time is determined by the `theme` setting in `./site.yml`
+
+    ---
+    ...
+    theme: default
+    ...
+
 ## The asset "pipeline"
 
-The asset "pipeline" is extremely simple at this stage. Anything under your `/assets` directory is copied to `/build/assets` when the `mix obelisk build` task is run.
+The asset "pipeline" is extremely simple at this stage. Anything under your `/themes/$THEME/assets` directory is copied to `/build/assets` when the `mix obelisk build` task is run.
 
 ## Layouts
 
-Everything under the `/layout` directory is used to build up your site, and the Elixir template languate Eex is used.
+Everything under the `/themes/$THEME/layout` directory is used to build up your site, and the Elixir template languate Eex is used.
 
 `post.eex` is the template which wraps blog post content. The `@content` variable is used within this template to specify the location that the converted markdown content is injected.
 
