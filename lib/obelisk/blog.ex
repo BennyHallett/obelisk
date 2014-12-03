@@ -2,8 +2,7 @@ defmodule Obelisk.Blog do
 
   def compile_index([], _, _), do: nil
   def compile_index(posts, store, page_num \\ 1) do
-    config = Obelisk.Store.get_config(store)
-    { ppp, _ } = Integer.parse config.posts_per_page
+    { ppp, _ } = Integer.parse Obelisk.Config.config.posts_per_page
     { c, r } = Enum.split(posts, ppp)
     write_index_page c, page_num, last_page?(r), store
     compile_index r, store, page_num + 1

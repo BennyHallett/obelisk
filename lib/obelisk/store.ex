@@ -14,23 +14,8 @@ defmodule Obelisk.Store do
         page:   Obelisk.Layout.page,
         index:  Obelisk.Layout.index
       })
-      store = HashDict.put(store, :config, Obelisk.Config.config)
       store
     end)
-  end
-
-  @doc """
-  Save config into the store
-  """
-  def set_config(store, config) do
-    Agent.update(store, &HashDict.put(&1, :config, config))
-  end
-
-  @doc """
-  Retrieve config from store
-  """
-  def get_config(store) do
-    Agent.get(store, &HashDict.get(&1, :config))
   end
 
   @doc """

@@ -15,7 +15,8 @@ defmodule Obelisk.Mixfile do
   end
 
   def application do
-    [applications: [:yamerl, :cowboy, :plug]]
+    [applications: [:yamerl, :cowboy, :plug],
+     mod: {Obelisk, []}]
   end
 
   defp deps do

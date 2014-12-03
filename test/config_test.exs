@@ -2,13 +2,13 @@ defmodule ConfigTest do
   use ExUnit.Case
 
   setup do
+    Application.start :obelisk
     on_exit fn -> TestHelper.cleanup end
   end
 
-  test "loading config fails if config does not exist" do
-    assert_raise RuntimeError, "Couldn't find configuration file: site.yml", fn ->
-      Obelisk.Config.config
-    end
+  test "config is default if it doesn't exist not exist" do
+    default = Obelisk.YamlToDict.convert(%{}, hd(:yamerl_constr.string(Obelisk.Templates.config)))
+    assert default == Obelisk.Config.config
   end
 
   test "loading config succeeds" do

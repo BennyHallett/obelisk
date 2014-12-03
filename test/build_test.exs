@@ -49,6 +49,7 @@ defmodule BuildTaskTest do
     url: http://my.blog.com
     posts_per_page: 5
     """)
+    Obelisk.Config.reload
     Obelisk.Tasks.Build.run []
 
     assert File.exists? "./build/index.html"

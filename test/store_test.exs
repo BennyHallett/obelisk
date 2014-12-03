@@ -29,26 +29,6 @@ defmodule StoreTest do
     assert Obelisk.Layout.page == layouts.page
   end
 
-  test "Config is loaded initially" do
-    { :ok, store } = Obelisk.Store.start_link
-
-    config = Obelisk.Store.get_config(store)
-    assert config.name == "A brand new static site"
-    assert config.url == "http://my.blog.url"
-    assert config.description == "This is my blog about things"
-    assert config.language == "en-us"
-    assert config.posts_per_page == "10"
-  end
-
-  test "Set configuration" do
-    { :ok, store } = Obelisk.Store.start_link
-    Obelisk.Store.set_config store, %{ a: "A", b: "B" }
-
-    stored_cfg = Obelisk.Store.get_config store
-    assert stored_cfg.a == "A"
-    assert stored_cfg.b == "B"
-  end
-
   test "Add posts" do
     { :ok, store } = Obelisk.Store.start_link
     posts = [ "A", "B", "C" ]
