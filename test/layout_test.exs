@@ -2,11 +2,12 @@ defmodule LayoutTest do
   use ExUnit.Case
 
   setup do
+    Obelisk.Config.force %{ theme: "default", posts_per_page: 5 }
     on_exit fn -> TestHelper.cleanup end
   end
 
   test "layout path" do
-    assert "./layout/layout.eex" == Obelisk.Layout.path
+    assert "./themes/default/layout/layout.eex" == Obelisk.Layout.path
   end
 
   test "test get post layout" do

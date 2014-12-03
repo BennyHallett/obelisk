@@ -8,9 +8,13 @@ defmodule Obelisk.Config do
 
   def config, do: GenServer.call(__MODULE__, :config)
 
+  def force(new_config), do: GenServer.cast(__MODULE__, { :force, new_config })
+
   ## GenServer callbacks
 
   def handle_call(:config, _from, config), do: { :reply, config, config }
+
+  def handle_cast({:force, new_config}, _config), do: { :noreply, new_config }
 
   def handle_cast(:reload, _config), do: { :noreply, load_config }
   ## Helpers

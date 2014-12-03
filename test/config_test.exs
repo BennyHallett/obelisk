@@ -2,7 +2,8 @@ defmodule ConfigTest do
   use ExUnit.Case
 
   setup do
-    Application.start :obelisk
+    TestHelper.cleanup
+    Obelisk.Config.reload
     on_exit fn -> TestHelper.cleanup end
   end
 
@@ -13,8 +14,10 @@ defmodule ConfigTest do
 
   test "loading config succeeds" do
     Obelisk.Tasks.Init.run([])
+    Obelisk.Config.reload
     config = Obelisk.Config.config
     assert "A brand new static site" == config.name
+    assert "default" == config.theme
   end
 
 end

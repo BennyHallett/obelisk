@@ -1,4 +1,5 @@
 defmodule Obelisk.Blog do
+  require Integer
 
   def compile_index([], _, _), do: nil
   def compile_index(posts, store, page_num \\ 1) do

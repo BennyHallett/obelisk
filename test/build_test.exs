@@ -8,6 +8,7 @@ defmodule BuildTaskTest do
 
   test "Build task compiles posts into the build dir" do
     Obelisk.Tasks.Init.run([])
+    Obelisk.Config.reload
     Enum.each(10..15, fn day -> create_post day end)
     Obelisk.Tasks.Build.run([])
 
@@ -16,6 +17,7 @@ defmodule BuildTaskTest do
 
   test "Build task compiled pages into the build dir" do
     Obelisk.Tasks.Init.run([])
+    Obelisk.Config.reload
     Enum.each(10..15, fn day -> create_page day end)
     Obelisk.Tasks.Build.run([])
 
@@ -24,6 +26,7 @@ defmodule BuildTaskTest do
 
   test "Index page doesnt include next link on last page" do
     Obelisk.Tasks.Init.run([])
+    Obelisk.Config.reload
     Obelisk.Tasks.Build.run([])
 
     assert !String.contains? File.read!("./build/index.html"), "<a href=\"index2.html\">Next Page</a>"
@@ -31,6 +34,7 @@ defmodule BuildTaskTest do
 
   test "Build task copies assets into the build dir" do
     Obelisk.Tasks.Init.run([])
+    Obelisk.Config.reload
     Obelisk.Tasks.Build.run([])
 
     assert File.dir? "./build/assets"
@@ -41,6 +45,7 @@ defmodule BuildTaskTest do
 
   test "Config limits items per index page" do
     Obelisk.Tasks.Init.run []
+    Obelisk.Config.reload
     1..10 |> Enum.each(&(create_post &1))
     File.write("site.yml", """
     ---
@@ -48,6 +53,7 @@ defmodule BuildTaskTest do
     description: My Blog about things
     url: http://my.blog.com
     posts_per_page: 5
+    theme: default
     """)
     Obelisk.Config.reload
     Obelisk.Tasks.Build.run []

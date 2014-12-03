@@ -1,19 +1,20 @@
 defmodule Obelisk.Assets do
+  alias Obelisk.Config
 
-  def copy, do: File.cp_r("./assets", "./build/assets")
+  def copy, do: File.cp_r("./themes/#{Config.config.theme}/assets", "./build/assets")
 
   def css_files do
     File.ls!("./build/assets/css")
     |> Enum.sort
     |> Enum.map(&("assets/css/#{&1}"))
-    |> Enum.filter(&(!File.dir? &1))
+    |> Enum.filter(&(!File.dir? "./build/#{&1}"))
   end
 
   def js_files do
     File.ls!("./build/assets/js")
-    |> Enum.sort 
+    |> Enum.sort
     |> Enum.map(&("assets/js/#{&1}"))
-    |> Enum.filter(&(!File.dir? &1))
+    |> Enum.filter(&(!File.dir? "./build/#{&1}"))
   end
 
   def css do
