@@ -3,6 +3,7 @@ ExUnit.start()
 defmodule TestHelper do
 
   def cleanup do
+    Obelisk.Config.reload
     File.rm_rf "./themes"
     File.rm_rf "./posts"
     File.rm_rf "./drafts"

@@ -3,6 +3,8 @@
   "cowboy": {:hex, :cowboy, "1.0.0"},
   "cowlib": {:hex, :cowlib, "1.0.0"},
   "earmark": {:hex, :earmark, "0.1.10"},
+  "meck": {:hex, :meck, "0.8.2"},
+  "mock": {:hex, :mock, "0.1.0"},
   "plug": {:hex, :plug, "0.8.0"},
   "ranch": {:hex, :ranch, "1.0.0"},
   "rss": {:hex, :rss, "0.2.1"},
