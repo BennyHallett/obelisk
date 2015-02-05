@@ -1,5 +1,6 @@
 defmodule ThemeTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
+  import Mock
 
   setup do
     on_exit fn -> TestHelper.cleanup end
@@ -18,7 +19,26 @@ defmodule ThemeTest do
     assert Obelisk.Theme.ensure
   end
 
-  test "" do
+  test "github theme doesn't get cloned if exists" do
+    # Works off repo name so we can use 'default'
+    Obelisk.Tasks.Init.run []
+    repo = "https://github.com/bennyhallett/default.git"
+    Obelisk.Config.force %{ theme: "bennyhallett/default" }
+
+    with_mock Obelisk.Git, [clone: fn(_url) -> "cloned" end] do
+      assert Obelisk.Theme.ensure
+      assert not called Obelisk.Git.clone(repo)
+    end
+  end
+
+  test "clone github repo" do
+    repo = "https://github.com/bennyhallett/theme.git"
+    Obelisk.Config.force %{ theme: "bennyhallett/theme" }
+
+    with_mock Obelisk.Git, [clone: fn(_url) -> "cloned" end] do
+      Obelisk.Theme.ensure
+      assert called Obelisk.Git.clone(repo)
+    end
 
   end
 
