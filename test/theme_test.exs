@@ -42,4 +42,27 @@ defmodule ThemeTest do
 
   end
 
+  test "url theme doesnt get cloned if it exists" do
+    # Works off repo name so we can use 'default'
+    Obelisk.Tasks.Init.run []
+    repo = "https://github.com/bennyhallett/default.git"
+    Obelisk.Config.force %{ theme: repo }
+
+    with_mock Obelisk.Git, [clone: fn(_url) -> "cloned" end] do
+      assert Obelisk.Theme.ensure
+      assert not called Obelisk.Git.clone(repo)
+    end
+
+  end
+
+  test "clone http url" do
+    repo = "https://github.com/bennyhallett/theme.git"
+    Obelisk.Config.force %{ theme: repo }
+
+      with_mock Obelisk.Git, [clone: fn(_url) -> "cloned" end] do
+        Obelisk.Theme.ensure
+        assert called Obelisk.Git.clone(repo)
+      end
+  end
+
 end

@@ -17,6 +17,7 @@ defmodule Obelisk.Theme do
 
   defp _ensure([local]), do: ensure_local(File.dir?("themes/#{local}"), local)
   defp _ensure([user, repo]), do: ensure_github(File.dir?("themes/#{repo}"), user, repo)
+  defp _ensure(url), do: ensure_url(url)
 
   defp ensure_local(true, _theme), do: true
   defp ensure_local(false, theme), do: raise(Obelisk.Errors.ThemeNotFound, {:local, theme})
@@ -26,5 +27,17 @@ defmodule Obelisk.Theme do
     "https://github.com/#{user}/#{repo}.git"
     |> Obelisk.Git.clone
   end
+
+  defp ensure_url(url) do
+    repo = url
+    |> Enum.reverse
+    |> hd
+    |> String.replace("\.git", "")
+
+    _ensure_url(File.dir?("themes/#{repo}"), Enum.join(url, "/"))
+  end
+
+  def _ensure_url(true, _url), do: true
+  def _ensure_url(false, url), do: url |> Obelisk.Git.clone
 
 end
