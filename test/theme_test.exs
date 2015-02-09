@@ -65,4 +65,20 @@ defmodule ThemeTest do
       end
   end
 
+  test "get current local theme" do
+    Obelisk.Config.force %{ theme: "testtheme" }
+    assert "testtheme" == Obelisk.Theme.current
+  end
+
+  test "get current github theme" do
+    Obelisk.Config.force %{ theme: "user/repo" }
+    assert "repo" == Obelisk.Theme.current
+  end
+
+  test "get current url theme" do
+    Obelisk.Config.force %{ theme: "http://example.com/random/theme.git" }
+    assert "theme" == Obelisk.Theme.current
+  end
+
+
 end

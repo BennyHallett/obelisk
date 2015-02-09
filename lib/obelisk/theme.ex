@@ -5,6 +5,28 @@ defmodule Obelisk.Theme do
   """
 
   @doc """
+  Get the currently selected theme as defined in
+  `site.yml`
+
+  This will be the repo part only, which will match the
+  directory that the theme will be localed in under `/themes`.
+
+  For example, having `theme: http://git.com/user/theme` in
+  `site.yml` will result in `theme` from this function.
+  """
+
+  def current do
+    Obelisk.Config.config
+    |> Dict.get(:theme)
+    |> String.split("/")
+    |> _current
+  end
+
+  defp _current([local]), do: local
+  defp _current([user, repo]), do: repo
+  defp _current(url), do: url |> Enum.reverse |> hd |> String.replace("\.git", "")
+
+  @doc """
   Ensures that the nominated theme is available.
   """
 

@@ -12,6 +12,7 @@ defmodule Obelisk.Tasks.Build do
     Application.start :yamerl
     Obelisk.start(nil, nil)
     Obelisk.Site.clean
+    Obelisk.Theme.ensure
     Obelisk.Assets.copy
 
     { :ok, store } = Obelisk.Store.start_link
