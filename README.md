@@ -130,6 +130,51 @@ used at build time is determined by the `theme` setting in `./site.yml`
     theme: default
     ...
 
+### Local Themes
+
+Local themes are those that you have created yourself and not yet shared with
+the world. A new theme can be created by making a new directory under `/themes`
+and including the required files and directories
+
+    /themes/<themename>/
+    /themes/<themename>/assets/
+    /themes/<themename>/assets/css/
+    /themes/<themename>/assets/js/
+    /themes/<themename>/assets/img/
+    /themes/<themename>/layout
+
+Enable the theme by selecting it in `site.yml` as shown above.
+
+### Github Themes
+
+If your theme is hosted on [Github](https://github.com) you can have Obelisk
+automatically include that theme for you without having to manually include it
+in your `/themes` directory.
+
+In your `site.yml`, use the `user/repo` form common to Github repositories and
+Obelisk will do the rest when you run `$ mix obelisk build`
+
+    ---
+    theme: "github_user/obelisk_theme"
+    ...
+
+>> Note: You'll need a native git client installed to clone the repository. It
+>> will also need to be publicly accessible.
+
+### Themes in other Git repositories
+
+If your theme is in a Git repository, but not hosted on Github, never fear.
+Obelisk will still handle your theme. Just include the full url to your theme
+repository and Obelisk will work similarly to the way it does for Github
+repositories.
+
+    ---
+    theme: "http://example.com/user/repo.git"
+    ...
+
+>> Note: You'll need a native git client installed to clone the repository. It
+>> will also need to be publicly accessible.
+
 ## The asset "pipeline"
 
 The asset "pipeline" is extremely simple at this stage. Anything under your `/themes/$THEME/assets` directory is copied to `/build/assets` when the `mix obelisk build` task is run.
