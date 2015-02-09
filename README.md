@@ -114,7 +114,7 @@ Now within the `post.eex` template, which we'll talk about a bit further down, w
 
 ## Themes
 
-Since Obelisk v1.0.0, you are now able to customize your site with various
+Since Obelisk v0.9.0, you are now able to customize your site with various
 themes. These themes are stored in the `/themes/` directory, each in their own
 individual directory.
 
