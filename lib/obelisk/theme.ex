@@ -23,7 +23,7 @@ defmodule Obelisk.Theme do
   end
 
   defp _current([local]), do: local
-  defp _current([user, repo]), do: repo
+  defp _current([_user, repo]), do: repo
   defp _current(url), do: url |> Enum.reverse |> hd |> String.replace("\.git", "")
 
   @doc """
