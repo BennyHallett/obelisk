@@ -92,6 +92,7 @@ defmodule BuildTaskTest do
     ---
     title: This is the heading
     description: This is the desc
+    created: 2015-01-01
     ---
 
     * And

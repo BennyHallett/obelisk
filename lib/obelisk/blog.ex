@@ -1,12 +1,18 @@
 defmodule Obelisk.Blog do
   require Integer
 
-  def compile_index([], _, _), do: nil
-  def compile_index(posts, store, page_num \\ 1) do
+  def compile_index(posts, store) do
+    posts
+    |> Enum.sort(&(&1.frontmatter.created <= &2.frontmatter.created))
+    |> _compile_index(store)
+  end
+
+  defp _compile_index([], _, _), do: nil
+  defp _compile_index(posts, store, page_num \\ 1) do
     { ppp, _ } = Integer.parse Obelisk.Config.config.posts_per_page
     { c, r } = Enum.split(posts, ppp)
     write_index_page c, page_num, last_page?(r), store
-    compile_index r, store, page_num + 1
+    _compile_index r, store, page_num + 1
   end
 
   defp write_index_page(posts, page_num, last_page, store) do
