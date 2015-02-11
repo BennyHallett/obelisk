@@ -10,6 +10,7 @@ defmodule Obelisk.Templates do
     ---
     title: #{title}
     description: A new blog post
+    created: #{Obelisk.Date.now}
     ---
 
     Welcome to your brand new obelisk post.
