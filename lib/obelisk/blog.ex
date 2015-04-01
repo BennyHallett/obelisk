@@ -26,8 +26,29 @@ defmodule Obelisk.Blog do
   defp last_page?([]), do: true
   defp last_page?(_),  do: false
 
-  def html_filename(1),        do: "./build/index.html"
-  def html_filename(page_num), do: "./build/index#{page_num}.html"
+  def html_filename(page_num) do
+    Obelisk.Config.config
+    |> Dict.get(:blog_index)
+    |> with_index_num(page_num)
+    |> build_index_path
+  end
+
+  defp with_index_num(nil, 1), do: "index.html"
+  defp with_index_num(nil, page_num), do: "index#{page_num}.html"
+  defp with_index_num(c, 1), do: c
+  defp with_index_num(c, page_num) do
+    [ext|reverse_path] = c
+    |> String.split(".")
+    |> Enum.reverse
+
+    p = reverse_path
+    |> Enum.reverse
+    |> Enum.join
+
+    p <> to_string(page_num) <> "." <> ext
+  end
+
+  defp build_index_path(path), do: "./build/" <> path
 
   defp previous_page(1),        do: ""
   defp previous_page(2),        do: "<a href=\"index.html\">Previous Page</a>"
