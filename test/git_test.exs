@@ -1,5 +1,5 @@
 defmodule GitTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
   import Mock
 
   setup do

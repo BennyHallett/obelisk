@@ -1,5 +1,5 @@
 defmodule PostTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
 
   test "Can properly parse md filename to post name" do
     filename = "2014-02-03-this-is-a-test.markdown"

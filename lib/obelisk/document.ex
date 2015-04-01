@@ -1,23 +1,25 @@
 defmodule Obelisk.Document do
 
-  def compile(md_file, template) do
+  def compile(md_file, {template, renderer}) do
     md = File.read! md_file
     { frontmatter, md_content } =  parts md
     fm = Obelisk.FrontMatter.parse frontmatter
+    { layout_template, layout_renderer } = Obelisk.Layout.layout
     File.write(html_filename(md_file),
-      EEx.eval_string(Obelisk.Layout.layout, assigns: [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: EEx.eval_string(template, assigns: [content: Earmark.to_html(md_content), frontmatter: fm])]))
+      Obelisk.Renderer.render(layout_template, [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: Obelisk.Renderer.render(template, [content: Earmark.to_html(md_content), frontmatter: fm], renderer)], layout_renderer))
   end
 
-  def prepare(md_file, template) do
+  def prepare(md_file, {template, renderer}) do
     md = File.read! md_file
     { frontmatter, md_content } =  parts md
     fm = Obelisk.FrontMatter.parse frontmatter
-    content = EEx.eval_string(template, assigns: [ content: Earmark.to_html(md_content), frontmatter: fm, filename: file_name(md_file) ])
+    content = Obelisk.Renderer.render(template, [ content: Earmark.to_html(md_content), frontmatter: fm, filename: file_name(md_file) ], renderer)
     assigns = [ js:       Obelisk.Assets.js,
                 css:      Obelisk.Assets.css,
                 content:  content
               ]
-    document = EEx.eval_string(Obelisk.Layout.layout, assigns: assigns)
+    { layout_template, layout_renderer } = Obelisk.Layout.layout
+    document = Obelisk.Renderer.render(layout_template, assigns, layout_renderer)
     %{ frontmatter: fm, content: content, document: document, path: html_filename(md_file), filename: file_name(md_file)  }
   end
 

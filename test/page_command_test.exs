@@ -1,5 +1,5 @@
 defmodule PageTaskTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
 
   setup do
     on_exit fn -> TestHelper.cleanup end

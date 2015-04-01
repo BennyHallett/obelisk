@@ -5,20 +5,44 @@ defmodule Obelisk.Layout do
     "./themes/#{Theme.current}/layout/layout.eex"
   end
 
-  def layout do
-    File.read!(path)
+  def layout, do: load "layout"
+
+  def post, do: load "post"
+
+  def page, do: load "page"
+
+  def index, do: load "index"
+
+  defp load(template) do
+    template
+    |> to_filename
+    |> to_path
+    |> read
+    |> determine_renderer
   end
 
-  def post do
-    File.read!("./themes/#{Theme.current}/layout/post.eex")
+  defp base_path do
+    "./themes/#{Theme.current}/layout"
   end
 
-  def page do
-    File.read!("./themes/#{Theme.current}/layout/page.eex")
+  defp to_filename(template) do
+    base_path
+    |> File.ls!
+    |> Enum.find(fn(t) -> hd(String.split(t, ".")) == template end)
   end
 
-  def index do
-    File.read!("./themes/#{Theme.current}/layout/index.eex")
+  defp to_path(filename), do: base_path <> "/" <> filename
+
+  defp read(path), do: { File.read!(path), path }
+
+  defp determine_renderer({ content, path }) do
+    renderer = path
+    |> String.split(".")
+    |> Enum.reverse
+    |> hd
+    |> String.to_atom
+
+    { content, renderer }
   end
 
 end

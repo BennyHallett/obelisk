@@ -17,8 +17,10 @@ defmodule Obelisk.Blog do
 
   defp write_index_page(posts, page_num, last_page, store) do
     templates = Obelisk.Store.get_layouts(store)
+    { layout, layout_renderer } = templates.layout
+    { index, index_renderer } = templates.index
     File.write(html_filename(page_num),
-      EEx.eval_string(templates.layout, assigns: [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: EEx.eval_string(templates.index, assigns: [prev: previous_page(page_num), next: next_page(page_num, last_page), content: posts ])]))
+      Obelisk.Renderer.render(layout, [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: Obelisk.Renderer.render(index, [prev: previous_page(page_num), next: next_page(page_num, last_page), content: posts ], index_renderer)], layout_renderer))
   end
 
   defp last_page?([]), do: true

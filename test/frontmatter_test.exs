@@ -1,5 +1,5 @@
 defmodule FrontMatterTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
 
   test "can parse front matter" do
     fm = Obelisk.FrontMatter.parse frontmatter
