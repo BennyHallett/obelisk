@@ -10,7 +10,7 @@ Static Site Generator written in Elixir.
 
 * **Fast**. Static websites can take a long time to generate when they start to grow large.
 obelisk should take advantage of Elixir's multithreaded behaviour to increase this speed.
-* **Simple, Obvious**. It should be very straight forward to add new content and modify the 
+* **Simple, Obvious**. It should be very straight forward to add new content and modify the
 way that your site works.
 * **Templatable**. It should be possible to store templates in github repos and reference them
 directly, allowing modification of the look and feel of a site instantaneously with no manual
@@ -181,18 +181,30 @@ The asset "pipeline" is extremely simple at this stage. Anything under your `/th
 
 ## Layouts
 
-Everything under the `/themes/$THEME/layout` directory is used to build up your site, and the Elixir template languate Eex is used.
+Everything under the `/themes/$THEME/layout` directory is used to build up your site. You have the option of using either the standard [Elixir templating library, Eex](http://elixir-lang.org/docs/v1.0/eex/), or [haml](http://haml.info/).
 
-`post.eex` is the template which wraps blog post content. The `@content` variable is used within this template to specify the location that the converted markdown content is injected.
+Both templating libraries are available out of the box, with no configuration
+required. They can also be both used within the same project.
 
-`index.eex` is the template which wraps your index page, which for now is intented to hold the list of blog posts. This template provides 3 variables. Similar to the post template, the index template provides `@content`, which is the list of blog posts (at this stage as html links). The other two variables, `@next` and `@prev` provide links to move between index pages. Each index page contains 10 blog posts, ordered from newest to oldest. The pages are created with the following pattern:
+Which renderer to use is decided based on the extension of the template file:
+
+* _eex_ will use the eex renderer
+* _html.eex_ will use the eex renderer
+* _haml_ will use the haml renderer
+* _html.haml_ will use the haml renderer
+
+`post.eex` (or similar) is the template which wraps blog post content. The `@content` variable is used within this template to specify the location that the converted markdown content is injected.
+
+`page.eex` (or similar) is the template which wraps page content. The `@content` variable is used within this template to specify the location that the converted markdown content is injected.
+
+`index.eex` (or similar) is the template which wraps your index page, which for now is intented to hold the list of blog posts. This template provides 3 variables. Similar to the post template, the index template provides `@content`, which is the list of blog posts (at this stage as html links). The other two variables, `@next` and `@prev` provide links to move between index pages. Each index page contains 10 blog posts, ordered from newest to oldest. The pages are created with the following pattern:
 
     index.html
     index2.html
     ...
     index8.html
 
-`layout.eex` is the template which wraps every page. This is the template that should include your `<html>`, `<head>` and `<body>` tags. This template provides 3 variables also. Again, the `@content` variable is provided, which specifies where to inject the content from whichever page is being built. Additionally, the `@css` and `@js` variables are provided, which include the html markdown for all of the files (not folders) directly under `/build/assets/css` and `/build/assets/js` respectively. These files are written to the page in alphabetical order, so if a particual order is required (i.e reset.css first), then the current solution is to rename the files to match the order in which they should be imported:
+`layout.eex` (or similar) is the template which wraps every page. This is the template that should include your `<html>`, `<head>` and `<body>` tags. This template provides 3 variables also. Again, the `@content` variable is provided, which specifies where to inject the content from whichever page is being built. Additionally, the `@css` and `@js` variables are provided, which include the html markdown for all of the files (not folders) directly under `/build/assets/css` and `/build/assets/js` respectively. These files are written to the page in alphabetical order, so if a particual order is required (i.e reset.css first), then the current solution is to rename the files to match the order in which they should be imported:
 
     /assets/css/0-reset.css
     /assets/css/1-layout.css
