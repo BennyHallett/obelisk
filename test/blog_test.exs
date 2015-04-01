@@ -35,4 +35,24 @@ defmodule BlogTest do
     assert "./build/blog/index10.html" == Blog.html_filename(10)
   end
 
+  test "next page on last page" do
+    assert "" == Blog.next_page(1, true)
+  end
+
+  test "next page on not last page" do
+    assert "<a href=\"index3.html\">Next Page</a>" == Blog.next_page(2, false)
+  end
+
+  test "prev page on first" do
+    assert "" == Blog.previous_page(1)
+  end
+
+  test "prev page on second" do
+    assert "<a href=\"index.html\">Previous Page</a>" == Blog.previous_page(2)
+  end
+
+  test "prev page on another" do
+    assert "<a href=\"index9.html\">Previous Page</a>" == Blog.previous_page(10)
+  end
+
 end
