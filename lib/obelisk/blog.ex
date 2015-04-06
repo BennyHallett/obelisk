@@ -50,11 +50,22 @@ defmodule Obelisk.Blog do
 
   defp build_index_path(path), do: "./build/" <> path
 
+  defp build_link(path, text), do: "<a href=\"#{path}\">#{text}</a>"
+
   def previous_page(1),        do: ""
-  def previous_page(2),        do: "<a href=\"index.html\">Previous Page</a>"
-  def previous_page(page_num), do: "<a href=\"index#{page_num - 1}.html\">Previous Page</a>"
+  def previous_page(page_num) do
+    Obelisk.Config.config
+    |> Dict.get(:blog_index)
+    |> with_index_num(page_num - 1)
+    |> build_link("Previous Page")
+  end
 
   def next_page(_page_num, true),  do: ""
-  def next_page(page_num, false), do: "<a href=\"index#{page_num + 1}.html\">Next Page</a>"
+  def next_page(page_num,  false) do
+    Obelisk.Config.config
+    |> Dict.get(:blog_index)
+    |> with_index_num(page_num + 1)
+    |> build_link("Next Page")
+  end
 
 end

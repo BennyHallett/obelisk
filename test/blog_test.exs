@@ -55,4 +55,41 @@ defmodule BlogTest do
     assert "<a href=\"index9.html\">Previous Page</a>" == Blog.previous_page(10)
   end
 
+  test "next page not on last page with single page config" do
+    Obelisk.Config.force %{ blog_index: "blog.html" }
+
+    assert "<a href=\"blog3.html\">Next Page</a>" == Blog.next_page(2, false)
+  end
+
+  test "next page not on last page with path config" do
+    Obelisk.Config.force %{ blog_index: "blog/index.html" }
+
+    assert "<a href=\"blog/index3.html\">Next Page</a>" == Blog.next_page(2, false)
+  end
+
+  test "previous page on second with single page config" do
+    Obelisk.Config.force %{ blog_index: "blog.html" }
+
+    assert "<a href=\"blog.html\">Previous Page</a>" == Blog.previous_page(2)
+  end
+
+  test "previous page on second with path config" do
+    Obelisk.Config.force %{ blog_index: "blog/index.html" }
+
+    assert "<a href=\"blog/index.html\">Previous Page</a>" == Blog.previous_page(2)
+  end
+
+  test "previous page on fourth with single page config" do
+    Obelisk.Config.force %{ blog_index: "blog.html" }
+
+    assert "<a href=\"blog3.html\">Previous Page</a>" == Blog.previous_page(4)
+  end
+
+  test "previous page on fourth with path config" do
+    Obelisk.Config.force %{ blog_index: "blog/index.html" }
+
+    assert "<a href=\"blog/index3.html\">Previous Page</a>" == Blog.previous_page(4)
+  end
+
+
 end
