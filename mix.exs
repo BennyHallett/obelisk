@@ -4,7 +4,7 @@ defmodule Obelisk.Mixfile do
   def project do
     [app: :obelisk,
      version: "0.10.0",
-     elixir: "~> 1.0.0",
+     elixir: "~> 1.0.3",
      package: package,
      docs: [readme: true, main: "README.md"],
      description: """
@@ -21,10 +21,10 @@ defmodule Obelisk.Mixfile do
 
   defp deps do
     [{:yamerl, github: "yakaz/yamerl"},
-     {:earmark, "~> 0.1.10"},
-     {:chronos, "~> 0.3.7"},
+     {:earmark, "~> 0.1.15"},
+     {:chronos, "~> 1.0.0"},
      {:cowboy, "~> 1.0.0"},
-     {:plug, "~> 0.11.0"},
+     {:plug, "~> 0.11.1"},
      {:rss, "~> 0.2.1"},
      {:anubis, "~> 0.1.0"},
      {:mock, "~> 0.1.0"},
