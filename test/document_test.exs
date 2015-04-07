@@ -17,6 +17,14 @@ defmodule DocumentTest do
     assert document.frontmatter.description == "This is the desc"
   end
 
+  test "file name for post" do
+    assert "post.html" == Obelisk.Document.file_name("path/to/post.markdown")
+  end
+
+  test "html filename with default config" do
+    assert "./build/post.html" == Obelisk.Document.html_filename("path/to/post.markdown")
+  end
+
   defp filename(day) do
     "2014-01-#{day}-post-with-day-#{day}"
   end
