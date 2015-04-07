@@ -2,6 +2,10 @@ defmodule Obelisk.Blog do
   require Integer
 
   def compile_index(posts, store) do
+    Obelisk.Config.config
+    |> Dict.get(:blog_index)
+    |> make_path
+
     posts
     |> Enum.sort(&(&1.frontmatter.created <= &2.frontmatter.created))
     |> _compile_index(store)
@@ -46,6 +50,22 @@ defmodule Obelisk.Blog do
     |> Enum.join
 
     p <> to_string(page_num) <> "." <> ext
+  end
+
+  defp make_path(nil), do: nil
+  defp make_path(path) do
+    path
+    |> String.split("/")
+    |> Enum.reverse
+    |> _make_path
+  end
+
+  defp _make_path([_filename|[]]), do: nil
+  defp _make_path([_filename|reverse_path]) do
+    [reverse_path] ++ ["build", "."] # Will reverse to ./build/path/unreversed
+    |> Enum.reverse
+    |> Enum.join("/")
+    |> File.mkdir_p
   end
 
   defp build_index_path(path), do: "./build/" <> path

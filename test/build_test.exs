@@ -71,6 +71,45 @@ defmodule BuildTaskTest do
     assert length(p3) == 3 # one extra for prev page
   end
 
+  test "build blog part to different page" do
+    Obelisk.Tasks.Init.run([])
+    1..10 |> Enum.each(&(create_post &1))
+    File.write("site.yml", """
+    ---
+    name: My Blog
+    description: My Blog about things
+    url: http://my.blog.com
+    posts_per_page: 5
+    theme: default
+    blog_index: "blog.html"
+    """)
+    Obelisk.Config.reload
+    Obelisk.Tasks.Build.run([])
+
+    assert File.exists? "./build/blog.html"
+    assert File.exists? "./build/blog2.html"
+  end
+
+  test "build blog part to different directory" do
+    Obelisk.Tasks.Init.run([])
+    1..10 |> Enum.each(&(create_post &1))
+    File.write("site.yml", """
+    ---
+    name: My Blog
+    description: My Blog about things
+    url: http://my.blog.com
+    posts_per_page: 5
+    theme: default
+    blog_index: "blog/index.html"
+    """)
+    Obelisk.Config.reload
+    Obelisk.Tasks.Build.run([])
+
+    assert File.exists? "./build/blog/index.html"
+    assert File.exists? "./build/blog/index2.html"
+
+  end
+
   defp filename(day) do
     "2014-01-#{day}-post-with-day-#{day}"
   end
