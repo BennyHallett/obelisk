@@ -30,13 +30,13 @@ defmodule Obelisk.Plug.IndexTest do
   test "sends file if exists" do
     source = Path.expand("./test/fixtures/build")
     dest   = Path.expand("./build")
-    File.cp_r source, dest 
+    File.cp_r source, dest
 
     conn = conn(:get, "/")
 
     conn = Obelisk.Plug.Index.call(conn, @opts)
 
-    assert conn.halted
+    assert conn.state == :sent
     refute conn.resp_body in [nil, ""]
 
     File.rm_rf dest

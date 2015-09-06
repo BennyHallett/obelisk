@@ -18,15 +18,16 @@ defmodule Obelisk.Plug.ServerTest do
   test "doesn't send 404 for known files" do
     source = Path.expand("./test/fixtures/build")
     dest   = Path.expand("./build")
+
     File.cp_r source, dest 
 
     conn = conn(:get, "/")
 
     conn = Obelisk.Plug.Index.call(conn, @opts)
 
-    assert conn.halted
-    refute conn.resp_body in [nil, ""]
     assert conn.status == 200
+    assert conn.state == :sent
+    refute conn.resp_body in [nil, ""]
 
     File.rm_rf dest
   end
