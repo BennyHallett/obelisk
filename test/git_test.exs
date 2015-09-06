@@ -13,9 +13,9 @@ defmodule GitTest do
   end
 
   test "Clone repo" do
-    with_mock System, [cmd: fn(_cmd, _args) -> "cloned" end] do
+    with_mock Obelisk.Git.System, [cmd: fn(_cmd, _args) -> "cloned" end] do
       Obelisk.Git.clone("http://example.com/user/repo.git")
-      assert called System.cmd("git", ["clone", "http://example.com/user/repo.git", "./themes/repo"])
+      assert called Obelisk.Git.System.cmd("git", ["clone", "http://example.com/user/repo.git", "./themes/repo"])
     end
   end
 
