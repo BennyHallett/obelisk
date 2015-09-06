@@ -29,9 +29,11 @@ defmodule Obelisk.Document do
     end
   end
 
-  def file_name(md) do
-    filepart = String.split("#{md}", "/") |> Enum.reverse |> hd
-    String.replace(filepart, ".markdown", ".html")
+  def file_name(path) do
+    path
+    |> Path.basename(".markdown")
+    |> Path.basename(".md")
+    |> (&(&1 <> ".html")).()
   end
 
   def html_filename(md) do
@@ -39,7 +41,12 @@ defmodule Obelisk.Document do
   end
 
   def title(md) do
-    String.capitalize(String.replace(String.replace(String.slice(md, 11, 1000), "-", " "), ".markdown", ""))
+    md
+    |> String.slice(11, 1000)
+    |> String.replace("-", " ")
+    |> String.replace(".markdown", "")
+    |> String.replace(".md", "")
+    |> String.capitalize
   end
 
   def parts(page_content) do
