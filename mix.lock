@@ -9,4 +9,4 @@
   "plug": {:hex, :plug, "0.11.1"},
   "ranch": {:hex, :ranch, "1.0.0"},
   "rss": {:hex, :rss, "0.2.1"},
-  "yamerl": {:git, "git://github.com/yakaz/yamerl.git", "a974d31325106fb4e8423e1af43e1dd9018d1218", []}}
+  "yamerl": {:git, "https://github.com/yakaz/yamerl.git", "a974d31325106fb4e8423e1af43e1dd9018d1218", []}}
