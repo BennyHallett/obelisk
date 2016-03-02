@@ -40,5 +40,24 @@ defmodule RendererTest do
     assert expected == result
   end
 
+  test "Test render/2 eex with parameters" do
+    title = "Good morning"
+    content = "<h1><%= @title %></h1>"
+    expected = "<h1>Good morning</h1>"
+
+    result = Renderer.render({content, :eex}, [title: title])
+
+    assert expected == result
+  end
+
+  test "Test render/2 haml with parameters" do
+    title = "Good morning"
+    content = "%h1= title"
+    expected = "<h1>Good morning</h1>"
+
+    result = Renderer.render({content, :haml}, [title: title])
+
+    assert expected == result
+  end
 
 end
