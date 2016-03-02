@@ -36,6 +36,7 @@ defmodule Obelisk.Templates do
     description: This is my blog about things
     language: en-us
     posts_per_page: 10
+    sort_posts: ascending
     theme: default
     """
   end

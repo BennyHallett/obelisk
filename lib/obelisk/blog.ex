@@ -1,13 +1,37 @@
 defmodule Obelisk.Blog do
   require Integer
 
+  defp get_sort_order do
+    Obelisk.Config.config[:sort_posts]
+  end
+
+  defp sort_by_created(:ascending) do
+    &(&1.frontmatter.created <= &2.frontmatter.created)
+  end
+  defp sort_by_created(:descending) do
+    &(&1.frontmatter.created >= &2.frontmatter.created)
+  end
+
+  defp get_sort_function do
+    case get_sort_order do
+      "descending" ->
+        sort_by_created :descending
+
+      "ascending" ->
+        sort_by_created :ascending
+
+      _ ->
+        sort_by_created :ascending
+    end
+  end
+
   def compile_index(posts, store) do
     Obelisk.Config.config
     |> Dict.get(:blog_index)
     |> make_path
 
     posts
-    |> Enum.sort(&(&1.frontmatter.created <= &2.frontmatter.created))
+    |> Enum.sort(get_sort_function)
     |> _compile_index(store)
   end
 
