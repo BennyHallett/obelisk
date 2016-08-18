@@ -5,6 +5,13 @@ defmodule Obelisk.Site do
     create_content_dirs
     Obelisk.Post.create("Welcome to Obelisk")
     File.write './site.yml', Obelisk.Templates.config
+
+    update_gitignore
+  end
+
+  def test_setup(dir) do
+    File.cd(dir)
+    initialize
   end
 
   def clean do
@@ -39,6 +46,12 @@ defmodule Obelisk.Site do
     File.write "./themes/default/layout/layout.eex", Obelisk.Templates.layout
     File.write "./themes/default/layout/index.eex", Obelisk.Templates.index
     File.write "./themes/default/layout/page.eex", Obelisk.Templates.page_template
+  end
+
+  defp update_gitignore do
+    File.open("./.gitignore", [:append], fn(file) ->
+      IO.binwrite(file, "\n/build\n")
+    end)
   end
 
 end
