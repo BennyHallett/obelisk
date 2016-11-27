@@ -1,5 +1,5 @@
 defmodule Obelisk.Plug.ServerTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
   use Plug.Test
 
   @opts Obelisk.Plug.Server.init([])
