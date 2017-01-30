@@ -22,7 +22,7 @@ defmodule Obelisk.Mixfile do
   defp deps do
     [{:yamerl, "~> 0.3.3"},
      {:earmark, "~> 1.1"},
-     {:chronos, "~> 1.0.0"},
+     {:chronos, "~> 1.7"},
      {:cowboy, "~> 1.0.0"},
      {:plug, "~> 1.3"},
      {:rss, "~> 0.2.1"},
