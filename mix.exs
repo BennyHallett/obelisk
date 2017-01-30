@@ -24,7 +24,7 @@ defmodule Obelisk.Mixfile do
      {:earmark, "~> 0.1.15"},
      {:chronos, "~> 1.0.0"},
      {:cowboy, "~> 1.0.0"},
-     {:plug, "~> 0.11.1"},
+     {:plug, "~> 1.3"},
      {:rss, "~> 0.2.1"},
      {:anubis, "~> 0.3.0"},
      {:mock, "~> 0.2.1", only: :test},
