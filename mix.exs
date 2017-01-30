@@ -28,7 +28,7 @@ defmodule Obelisk.Mixfile do
      {:rss, "~> 0.2.1"},
      {:anubis, "~> 0.3.0"},
      {:mock, "~> 0.2.1", only: :test},
-     {:calliope, "~> 0.3.0"}]
+     {:calliope, "~> 0.4.1"}]
   end
 
   defp package do
