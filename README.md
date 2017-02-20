@@ -26,7 +26,7 @@ We then modify our dependencies within `mix.exs` to include obelisk, as well as 
 library yamerl.
 
     defp deps do
-      [{ :obelisk, "~> 0.7.1" },
+      [{ :obelisk, "~> 0.10.0" },
        { :yamerl, github: "yakaz/yamerl"}]
     end
 
