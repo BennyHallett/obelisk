@@ -6,14 +6,14 @@ defmodule Obelisk.Document do
     fm = Obelisk.FrontMatter.parse frontmatter
     { layout_template, layout_renderer } = Obelisk.Layout.layout
     File.write(html_filename(md_file),
-      Obelisk.Renderer.render(layout_template, [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: Obelisk.Renderer.render(template, [content: Earmark.to_html(md_content), frontmatter: fm], renderer)], layout_renderer))
+      Obelisk.Renderer.render(layout_template, [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: Obelisk.Renderer.render(template, [content: Earmark.as_html!(md_content), frontmatter: fm], renderer)], layout_renderer))
   end
 
   def prepare(md_file, {template, renderer}) do
     md = File.read! md_file
     { frontmatter, md_content } =  parts md
     fm = Obelisk.FrontMatter.parse frontmatter
-    content = Obelisk.Renderer.render(template, [ content: Earmark.to_html(md_content), frontmatter: fm, filename: file_name(md_file) ], renderer)
+    content = Obelisk.Renderer.render(template, [ content: Earmark.as_html!(md_content), frontmatter: fm, filename: file_name(md_file) ], renderer)
     assigns = [ js:       Obelisk.Assets.js,
                 css:      Obelisk.Assets.css,
                 content:  content
