@@ -12,7 +12,7 @@ defmodule Obelisk.RSS do
   end
 
   defp compile_rss(posts) do
-    posts |> Enum.map &(build_item &1)
+    posts |> Enum.map(&build_item(&1))
   end
 
   defp build_item(post) do

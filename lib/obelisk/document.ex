@@ -1,26 +1,74 @@
 defmodule Obelisk.Document do
+  alias Obelisk.Document
 
-  def compile(md_file, {template, renderer}) do
-    md = File.read! md_file
-    { frontmatter, md_content } =  parts md
-    fm = Obelisk.FrontMatter.parse frontmatter
-    { layout_template, layout_renderer } = Obelisk.Layout.layout
-    File.write(html_filename(md_file),
-      Obelisk.Renderer.render(layout_template, [js: Obelisk.Assets.js, css: Obelisk.Assets.css, content: Obelisk.Renderer.render(template, [content: Earmark.to_html(md_content), frontmatter: fm], renderer)], layout_renderer))
+  defstruct(
+    path: nil,
+    filename: nil,
+    frontmatter: nil,
+    content: nil,
+    document: nil
+  )
+
+  defp parse_frontmatter(document, frontmatter_string) do
+    %Document{
+      document | frontmatter: Obelisk.FrontMatter.parse(frontmatter_string)
+    }
   end
 
-  def prepare(md_file, {template, renderer}) do
-    md = File.read! md_file
-    { frontmatter, md_content } =  parts md
-    fm = Obelisk.FrontMatter.parse frontmatter
-    content = Obelisk.Renderer.render(template, [ content: Earmark.to_html(md_content), frontmatter: fm, filename: file_name(md_file) ], renderer)
-    assigns = [ js:       Obelisk.Assets.js,
-                css:      Obelisk.Assets.css,
-                content:  content
-              ]
-    { layout_template, layout_renderer } = Obelisk.Layout.layout
-    document = Obelisk.Renderer.render(layout_template, assigns, layout_renderer)
-    %{ frontmatter: fm, content: content, document: document, path: html_filename(md_file), filename: file_name(md_file)  }
+  defp render_content(document, content_string, layout) do
+    params =
+      [ filename: document.filename,
+        frontmatter: document.frontmatter,
+        content: Obelisk.Renderer.render(content_string)
+      ]
+
+    %Document{
+      document | content: Obelisk.Renderer.render(layout, params)
+    }
+  end
+
+  defp render_assets(document, js_assets, css_assets, layout) do
+    params =
+      [ js: js_assets,
+        css: css_assets,
+        content: document.content
+      ]
+
+    %Document{
+      document | document: Obelisk.Renderer.render(layout, params)
+    }
+  end
+
+  defp write_document_to_html(document) do
+    File.write document.path, document.document
+  end
+
+  defp markdown_file_to_document(md_file, content_layout) do
+    path = html_filename md_file
+    filename = file_name md_file
+
+    {frontmatter_string, content_string} = parts File.read!(md_file)
+
+    layout = Obelisk.Layout.layout
+    js_assets = Obelisk.Assets.js
+    css_assets = Obelisk.Assets.css
+
+    %Document{path: path, filename: filename}
+    |> parse_frontmatter(frontmatter_string)
+    |> render_content(content_string, content_layout)
+    |> render_assets(js_assets, css_assets, layout)
+  end
+
+  def compile(md_file, content_layout) do
+    md_file
+    |> markdown_file_to_document(content_layout)
+    |> write_document_to_html
+  end
+
+  def prepare(md_file, content_layout) do
+    md_file
+    |> markdown_file_to_document(content_layout)
+    |> Map.from_struct
   end
 
   def write_all(pages) do
@@ -39,7 +87,11 @@ defmodule Obelisk.Document do
   end
 
   def title(md) do
-    String.capitalize(String.replace(String.replace(String.slice(md, 11, 1000), "-", " "), ".markdown", ""))
+    md
+    |> String.slice(11, 1000)
+    |> String.replace("-", " ")
+    |> String.replace(".markdown", "")
+    |> String.capitalize
   end
 
   def parts(page_content) do
@@ -54,6 +106,7 @@ defmodule Obelisk.Document do
   def filename_from_title(title) do
     datepart = Chronos.today |> Chronos.Formatter.strftime("%Y-%0m-%0d")
     titlepart = String.downcase(title) |> String.replace(" ", "-")
+
     "./posts/#{datepart}-#{titlepart}.markdown"
   end
 

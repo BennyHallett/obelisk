@@ -15,16 +15,17 @@ defmodule Mix.Tasks.Perf do
   end
 
   defp make_10k_posts do
-    1..10_000 |> Enum.each &(create_post &1)
+    1..10_000 |> Enum.each(&create_post(&1))
   end
 
   defp filename(num) do
     today = Chronos.today
+
     "#{Chronos.Formatter.strftime today, "%y-%0m-%0d"}-post-#{num}.markdown"
   end
 
   defp create_post(num) do
-    File.write("./posts/#{filename(num)}.markdown", content)
+    File.write "./posts/#{filename(num)}.markdown", content
   end
 
   defp content do
