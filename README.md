@@ -181,7 +181,7 @@ The asset "pipeline" is extremely simple at this stage. Anything under your `/th
 
 ## Layouts
 
-Everything under the `/themes/$THEME/layout` directory is used to build up your site. You have the option of using either the standard [Elixir templating library, Eex](http://elixir-lang.org/docs/v1.0/eex/), or [haml](http://haml.info/).
+Everything under the `/themes/$THEME/layout` directory is used to build up your site. You have the option of using either the standard [Elixir templating library, Eex](https://elixirschool.com/en/lessons/specifics/eex/), or [haml](http://haml.info/).
 
 Both templating libraries are available out of the box, with no configuration
 required. They can also be both used within the same project.
