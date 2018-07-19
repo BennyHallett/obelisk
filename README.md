@@ -158,8 +158,8 @@ Obelisk will do the rest when you run `$ mix obelisk build`
     theme: "github_user/obelisk_theme"
     ...
 
->> Note: You'll need a native git client installed to clone the repository. It
->> will also need to be publicly accessible.
+> Note: You'll need a native git client installed to clone the repository. It
+> will also need to be publicly accessible.
 
 ### Themes in other Git repositories
 
@@ -172,8 +172,8 @@ repositories.
     theme: "http://example.com/user/repo.git"
     ...
 
->> Note: You'll need a native git client installed to clone the repository. It
->> will also need to be publicly accessible.
+> Note: You'll need a native git client installed to clone the repository. It
+> will also need to be publicly accessible.
 
 ## The asset "pipeline"
 
@@ -197,14 +197,14 @@ Which renderer to use is decided based on the extension of the template file:
 
 `page.eex` (or similar) is the template which wraps page content. The `@content` variable is used within this template to specify the location that the converted markdown content is injected.
 
-`index.eex` (or similar) is the template which wraps your index page, which for now is intented to hold the list of blog posts. This template provides 3 variables. Similar to the post template, the index template provides `@content`, which is the list of blog posts (at this stage as html links). The other two variables, `@next` and `@prev` provide links to move between index pages. Each index page contains 10 blog posts, ordered from newest to oldest. The pages are created with the following pattern:
+`index.eex` (or similar) is the template which wraps your index page, which for now is intended to hold the list of blog posts. This template provides 3 variables. Similar to the post template, the index template provides `@content`, which is the list of blog posts (at this stage as html links). The other two variables, `@next` and `@prev` provide links to move between index pages. Each index page contains 10 blog posts, ordered from newest to oldest. The pages are created with the following pattern:
 
     index.html
     index2.html
     ...
     index8.html
 
-`layout.eex` (or similar) is the template which wraps every page. This is the template that should include your `<html>`, `<head>` and `<body>` tags. This template provides 3 variables also. Again, the `@content` variable is provided, which specifies where to inject the content from whichever page is being built. Additionally, the `@css` and `@js` variables are provided, which include the html markdown for all of the files (not folders) directly under `/build/assets/css` and `/build/assets/js` respectively. These files are written to the page in alphabetical order, so if a particual order is required (i.e reset.css first), then the current solution is to rename the files to match the order in which they should be imported:
+`layout.eex` (or similar) is the template which wraps every page. This is the template that should include your `<html>`, `<head>` and `<body>` tags. This template provides 3 variables also. Again, the `@content` variable is provided, which specifies where to inject the content from whichever page is being built. Additionally, the `@css` and `@js` variables are provided, which include the html markdown for all of the files (not folders) directly under `/build/assets/css` and `/build/assets/js` respectively. These files are written to the page in alphabetical order, so if a particular order is required (i.e reset.css first), then the current solution is to rename the files to match the order in which they should be imported:
 
     /assets/css/0-reset.css
     /assets/css/1-layout.css
